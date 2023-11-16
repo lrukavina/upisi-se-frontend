@@ -1,0 +1,255 @@
+<div style="margin-left: 5%; margin-right: 5%;">
+  <div class="box" style="min-height: 90vh">
+    <div class="level">
+      <div class="level-left">
+        <h1 class="title has-text-info"><b>Pregled kolegija</b></h1>
+      </div>
+      <div class="level-right">
+        <button class="button is-info" (click)="modalOtvoren = !modalOtvoren">Dodaj kolegij</button>
+      </div>
+    </div>
+    <div class="field mt-6 has-text-centered">
+      <div class="control">
+        <input class="input has-text-centered" style="width: 60%" type="email" placeholder="Pretraga kolegija">
+      </div>
+    </div>
+    <div style="margin-bottom: 10vh">
+    </div>
+    <div class="columns">
+      <div class="column has-background-info-dark has-text-white">
+        <h1><b>Kolegiji:</b></h1>
+      </div>
+    </div>
+    <div class="tablica-wrapper">
+      <table class="table has-text-centered is-fullwidth">
+        <thead>
+        <tr>
+          <th class="has-text-centered">Naziv</th>
+          <th class="has-text-centered">Semestar</th>
+          <th class="has-text-centered">ECTS bodovi</th>
+          <th class="has-text-centered">Visoko učilište</th>
+          <th class="has-text-centered">Studij</th>
+          <th class="has-text-centered"></th>
+          <th class="has-text-centered"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>NOSQL i napredna big data analitika</td>
+          <td>3</td>
+          <td>6</td>
+          <td>Tehničko veleučilište u Zagrebu</td>
+          <td>Specijalistički izvanredni studij informatike (RS)</td>
+          <td>
+            <button class="button is-warning">Uredi</button>
+          </td>
+          <td>
+            <button class="button is-danger">Izbriši</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Alati i postupci umjetne inteligencije</td>
+          <td>3</td>
+          <td>6</td>
+          <td>Tehničko veleučilište u Zagrebu</td>
+          <td>Specijalistički izvanredni studij informatike (RS)</td>
+          <td>
+            <button class="button is-warning">Uredi</button>
+          </td>
+          <td>
+            <button class="button is-danger">Izbriši</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Reinžinjering poslovnih procesa</td>
+          <td>3</td>
+          <td>6</td>
+          <td>Tehničko veleučilište u Zagrebu</td>
+          <td>Specijalistički izvanredni studij informatike (RS)</td>
+          <td>
+            <button class="button is-warning">Uredi</button>
+          </td>
+          <td>
+            <button class="button is-danger">Izbriši</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Projektiranje inovacija</td>
+          <td>3</td>
+          <td>6</td>
+          <td>Tehničko veleučilište u Zagrebu</td>
+          <td>Specijalistički izvanredni studij informatike (RS)</td>
+          <td>
+            <button class="button is-warning">Uredi</button>
+          </td>
+          <td>
+            <button class="button is-danger">Izbriši</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Napredne tehnike projektiranja web servisa</td>
+          <td>3</td>
+          <td>6</td>
+          <td>Tehničko veleučilište u Zagrebu</td>
+          <td>Specijalistički izvanredni studij informatike (RS)</td>
+          <td>
+            <button class="button is-warning">Uredi</button>
+          </td>
+          <td>
+            <button class="button is-danger">Izbriši</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Razvoj mobilnih aplikacija</td>
+          <td>3</td>
+          <td>6</td>
+          <td>Tehničko veleučilište u Zagrebu</td>
+          <td>Specijalistički izvanredni studij informatike (RS)</td>
+          <td>
+            <button class="button is-warning">Uredi</button>
+          </td>
+          <td>
+            <button class="button is-danger">Izbriši</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Modeliranje i administracija baza podataka</td>
+          <td>3</td>
+          <td>6</td>
+          <td>Tehničko veleučilište u Zagrebu</td>
+          <td>Specijalistički izvanredni studij informatike (RS)</td>
+          <td>
+            <button class="button is-warning">Uredi</button>
+          </td>
+          <td>
+            <button class="button is-danger">Izbriši</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Digitalna ekonomija</td>
+          <td>1</td>
+          <td>5</td>
+          <td>Tehničko veleučilište u Zagrebu</td>
+          <td>Specijalistički izvanredni studij informatike (RS)</td>
+          <td>
+            <button class="button is-warning">Uredi</button>
+          </td>
+          <td>
+            <button class="button is-danger">Izbriši</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Diskretna matematika</td>
+          <td>2</td>
+          <td>6</td>
+          <td>Tehničko veleučilište u Zagrebu</td>
+          <td>Specijalistički izvanredni studij informatike (RS)</td>
+          <td>
+            <button class="button is-warning">Uredi</button>
+          </td>
+          <td>
+            <button class="button is-danger">Izbriši</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Metodologija stručnog i istraživačkog rada</td>
+          <td>4</td>
+          <td>6</td>
+          <td>Tehničko veleučilište u Zagrebu</td>
+          <td>Specijalistički izvanredni studij informatike (RS)</td>
+          <td>
+            <button class="button is-warning">Uredi</button>
+          </td>
+          <td>
+            <button class="button is-danger">Izbriši</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <hr>
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+      <a class="pagination-previous">Prethodna stranica</a>
+      <a class="pagination-next">Sljedeća stranica</a>
+      <ul class="pagination-list">
+        <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
+        <li><span class="pagination-ellipsis">&hellip;</span></li>
+        <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
+        <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
+        <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
+        <li><span class="pagination-ellipsis">&hellip;</span></li>
+        <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<div *ngIf="modalOtvoren" class="modal is-active">
+  <div class="modal-background" (click)="modalOtvoren = !modalOtvoren"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Dodaj kolegij</p>
+      <button class="delete" aria-label="close" (click)="modalOtvoren = !modalOtvoren"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Naziv kolegija</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Matematika I">
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">Semestar</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="1">
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">ECTS bodovi</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="6">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Visoko učilište</label>
+        <div class="control">
+          <div class="select is-fullwidth">
+            <select>
+              <option>Tehničko veleučilište u Zagrebu</option>
+              <option>Fakultet strojarstva i brodogradnje</option>
+              <option>Ekonomski fakultet u Zagrebu</option>
+              <option>Veleučilište Velika gorica</option>
+              <option>Veterinarski fakultet u Zagrebu</option>
+              <option>Fakultet elektrotehnike i računarstva</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Studij i smjer</label>
+        <div class="control">
+          <div class="select is-fullwidth">
+            <select>
+              <option>Specijalistički izvanredni studij informatike (RS) - Programsko inženjerstvo računarskih i ugradbenih sustava</option>
+              <option>Specijalistički izvanredni studij digitalne ekonomije (RS) - Digitalna ekonomija i dizajn</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="field is-grouped mt-5">
+        <div class="control">
+          <button class="button is-info">Dodaj</button>
+        </div>
+        <div class="control">
+          <button class="button is-danger">Odustani</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

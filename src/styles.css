@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+  background: rgb(243,243,243);
+}
+html, body {
+  min-height: 100vh;
+  height: auto;
+  margin: 0;
+}
+
+.box{
+  border-radius: 0px !important;
+}
+
+.tablica {
+  text-align:center;
+  width:25%;
+}
+.tablica-wrapper {
+  overflow: auto;
+}
+
+.zaboravljena {
+  font-size: 0.85rem;
+}
+
+.okvir {
+  border-top: 1px solid white !important;
+  border-bottom: 1px solid white !important;
+}
