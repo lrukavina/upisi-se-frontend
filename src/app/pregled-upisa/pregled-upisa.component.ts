@@ -61,4 +61,18 @@ export class PregledUpisaComponent implements OnInit {
         console.log(error);
       });
   }
+
+  potvrdiUpisniList(): void {
+    this.pregledUpisaService.potvrdiUpisniList().subscribe(upisnilist => {
+      console.log(upisnilist);
+    });
+    window.location.reload();
+  }
+
+  izbrisiUpisniList(): void {
+    this.pregledUpisaService.izbrisiUpisniList().subscribe(upisnilist => {
+      console.log(upisnilist);
+    });
+    window.location.reload();
+  }
 }

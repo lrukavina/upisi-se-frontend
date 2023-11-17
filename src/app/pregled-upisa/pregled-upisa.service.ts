@@ -9,6 +9,8 @@ import {Upis} from "./upis";
 export class PregledUpisaService {
 
   private pregledUpisaUrl = 'http://localhost:8080/api/upis/dohvati/aktivne/korisnik';
+  private potvrdiUpisniListUrl = 'http://localhost:8080/api/upisni-list/potvrdi/korisnik'
+  private izbrisiUpisniListUrl = 'http://localhost:8080/api/upisni-list/izbrisi/korisnik'
 
   httpOptions = {
     headers: new HttpHeaders(
@@ -27,5 +29,17 @@ export class PregledUpisaService {
   dohvatiUpise(): Observable<Upis> {
     return this.http.get<Upis>(`${this.pregledUpisaUrl}/${sessionStorage.getItem('korisnickoIme')}`, this.httpOptions)
       .pipe(catchError(this.handleError));
+  }
+
+  potvrdiUpisniList(): Observable<Upis> {
+    return this.http.put<Upis>(`${this.potvrdiUpisniListUrl}`, {korisnickoIme: sessionStorage.getItem('korisnickoIme')}, this.httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  izbrisiUpisniList(): Observable<Upis> {
+    return this.http.delete<Upis>(`${this.izbrisiUpisniListUrl}/${sessionStorage.getItem('korisnickoIme')}`, this.httpOptions).pipe(
+      catchError(this.handleError)
+    );
   }
 }
