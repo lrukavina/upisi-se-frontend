@@ -29,9 +29,9 @@
               Potvrdi upis
             </button>
             <button *ngIf="upis.status === 'U_TIJEKU'" class="button is-danger mr-1"
-                    (click)="modalOtvoren = !modalOtvoren">Izbriši upis
+                    (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren">Izbriši upis
             </button>
-            <button *ngIf="upis.status === 'ZAVRSEN'" class="button is-info mr-1">Pregledaj upis</button>
+            <button *ngIf="upis.status === 'ZAVRSEN'" (click)="modalPregledOtvoren = !modalPregledOtvoren; pregledajUpisniList();" class="button is-info mr-1">Pregledaj upis</button>
           </div>
         </div>
         <hr>
@@ -39,12 +39,12 @@
     </div>
   </div>
 </div>
-<div *ngIf="modalOtvoren" class="modal is-active">
-  <div class="modal-background" (click)="modalOtvoren = !modalOtvoren"></div>
+<div *ngIf="modalBrisanjeOtvoren" class="modal is-active">
+  <div class="modal-background" (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren"></div>
   <div class="modal-card">
     <header class="modal-card-head">
       <p class="modal-card-title">Potvrdite brisanje upisnog lista</p>
-      <button class="delete" aria-label="close" (click)="modalOtvoren = !modalOtvoren"></button>
+      <button class="delete" aria-label="close" (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren"></button>
     </header>
     <section class="modal-card-body">
       <h1><b>Jeste li sigurni da želite izbrisati upisni list?</b></h1>
@@ -59,7 +59,23 @@
     </section>
     <footer class="modal-card-foot">
       <button class="button is-danger" (click)="izbrisiUpisniList()">Izbriši</button>
-      <button class="button" (click)="modalOtvoren = !modalOtvoren">Odustani</button>
+      <button class="button" (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren">Odustani</button>
+    </footer>
+  </div>
+</div>
+
+<div *ngIf="modalPregledOtvoren" class="modal is-active">
+  <div class="modal-background" (click)="modalPregledOtvoren = !modalPregledOtvoren"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Pregled upisnog lista</p>
+      <button class="delete" aria-label="close" (click)="modalPregledOtvoren = !modalPregledOtvoren"></button>
+    </header>
+    <section class="modal-card-body" style="max-height: 100vh">
+      <embed id="pdf" type="application/pdf" width="100%" height="600px" />
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-info" (click)="modalPregledOtvoren = !modalPregledOtvoren">Zatvori</button>
     </footer>
   </div>
 </div>

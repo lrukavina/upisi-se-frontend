@@ -31,6 +31,7 @@ export class PregledUpisaService {
       .pipe(catchError(this.handleError));
   }
 
+
   potvrdiUpisniList(): Observable<Upis> {
     return this.http.put<Upis>(`${this.potvrdiUpisniListUrl}`, {korisnickoIme: sessionStorage.getItem('korisnickoIme')}, this.httpOptions).pipe(
       catchError(this.handleError)

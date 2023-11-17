@@ -10,7 +10,10 @@ import {PregledUpisaService} from "./pregled-upisa.service";
   styleUrls: ['./pregled-upisa.component.css']
 })
 export class PregledUpisaComponent implements OnInit {
-  modalOtvoren = false;
+  modalBrisanjeOtvoren = false;
+  modalPregledOtvoren = false;
+
+  private pregledajUpisniListUrl = 'http://localhost:8080/api/upis/dohvati/pregled/korisnik';
 
   sifraOpis: SifraOpis = {
     sifra: '',
@@ -67,6 +70,21 @@ export class PregledUpisaComponent implements OnInit {
       console.log(upisnilist);
     });
     window.location.reload();
+  }
+
+  pregledajUpisniList(): void {
+    let url = this.pregledajUpisniListUrl + '/' + sessionStorage.getItem('korisnickoIme');
+    fetch(url)
+      .then(response => response.blob())
+      .then(blob => {
+        const url = URL.createObjectURL(blob);
+        const pdfViewer = document.getElementById('pdf');
+        if (pdfViewer == null) {
+          return;
+        }
+        pdfViewer.setAttribute('src', url);
+      })
+      .catch(error => console.error('Greška prilikom dohvaćanja PDF-a:', error));
   }
 
   izbrisiUpisniList(): void {
