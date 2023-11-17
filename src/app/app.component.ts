@@ -6,11 +6,12 @@ import {Router} from "@angular/router";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent  implements OnInit{
+export class AppComponent implements OnInit {
   title = 'Upisi.se';
   login = false;
 
-  constructor(private router: Router ) {}
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
     this.login = this.isLogin();
@@ -18,8 +19,11 @@ export class AppComponent  implements OnInit{
   }
 
   isLogin(): boolean {
-    console.log(this.router.url);
     return this.router.url === '/' || this.router.url === '/login';
+  }
+
+  isPregledUpisa(): boolean {
+    return this.isLogin() || this.router.url === '/pregled-upisa'
   }
 
 }

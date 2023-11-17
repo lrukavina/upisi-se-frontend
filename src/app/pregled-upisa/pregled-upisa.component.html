@@ -37,11 +37,11 @@
   <div class="modal-background" (click)="modalOtvoren = !modalOtvoren"></div>
   <div class="modal-card">
     <header class="modal-card-head">
-      <p class="modal-card-title">Potvrdite brisanje upisa</p>
+      <p class="modal-card-title">Potvrdite brisanje upisnog lista</p>
       <button class="delete" aria-label="close" (click)="modalOtvoren = !modalOtvoren"></button>
     </header>
     <section class="modal-card-body">
-      <h1><b>Jeste li sigurni da želite izbrisati upis?</b></h1>
+      <h1><b>Jeste li sigurni da želite izbrisati upisni list?</b></h1>
       <hr>
       <div class="has-text-centered">
         <p><b>Studij:</b></p>
@@ -53,7 +53,7 @@
     </section>
     <footer class="modal-card-foot">
       <button class="button is-danger">Izbriši</button>
-      <button class="button">Odustani</button>
+      <button class="button" (click)="modalOtvoren = !modalOtvoren">Odustani</button>
     </footer>
   </div>
 </div>
