@@ -74,7 +74,12 @@ export class PregledUpisaComponent implements OnInit {
 
   pregledajUpisniList(): void {
     let url = this.pregledajUpisniListUrl + '/' + sessionStorage.getItem('korisnickoIme');
-    fetch(url)
+    fetch(url, {
+      method: 'get',
+      headers: new Headers({
+        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+      })
+    })
       .then(response => response.blob())
       .then(blob => {
         const url = URL.createObjectURL(blob);
