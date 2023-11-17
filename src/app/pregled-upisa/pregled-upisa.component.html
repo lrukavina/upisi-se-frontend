@@ -1,32 +1,32 @@
 <div style="margin-left: 5%; margin-right: 5%;">
-  <div class="box has-text-centered">
-    <p>Luka Rukavina (0246073114)</p>
-    <p>Specijalistički izvanredni studij informatike (RS) - Programsko inženjerstvo računarskih i ugradbenih sustava</p>
-    <p><strong>Semestar 3</strong></p>
-  </div>
   <div class="box" style="height: 75vh">
     <div class="columns">
       <div class="column has-text-centered">
         <h1 class="title has-text-info">Dobrodošli u web aplikaciju za upis na visoka učilišta</h1>
-        <h1 class="has-text-centered">{{upis.visokoUciliste.opis}}</h1>
+        <h1 *ngIf="upis.sifra != ''" class="has-text-centered">{{upis.visokoUciliste.opis}}</h1>
       </div>
     </div>
     <div class="column">
       <h1 class="is-size-5"><strong>Upisi u tijeku:</strong></h1>
       <div class="column has-text-centered">
         <hr>
-        <p><strong>Naziv studija</strong></p>
-        <p>{{upis.studij.opis}}</p>
-        <p class="mt-1"><strong>Semestar</strong></p>
-        <p>{{upis.semestar}}</p>
-        <p class="mt-1"><strong>Traje do</strong></p>
-        <p>{{upis.datumVrijemeDo}}</p>
-        <p class="mb-5"></p>
-        <div class="buttons is-centered">
-          <a *ngIf="upis.status === 'NIJE_ZAPOCET'" routerLink="/odabir-kolegija"><button class="button is-info">Upiši</button></a>
-          <button *ngIf="upis.status === 'U_TIJEKU'" class="button is-primary mr-1">Potvrdi upis</button>
-          <button *ngIf="upis.status === 'U_TIJEKU'" class="button is-danger mr-1" (click)="modalOtvoren = !modalOtvoren">Izbriši upis</button>
-          <button *ngIf="upis.status === 'ZAVRSEN'" class="button is-info mr-1">Pregledaj upis</button>
+        <div *ngIf="upis.sifra === ''" class="column has-text-centered">
+          <h1 class="title has-text-info mt-6">Trenutno nema upisa za pirkaz</h1>
+        </div>
+        <div *ngIf="upis.sifra != ''">
+          <p><strong>Naziv studija</strong></p>
+          <p>{{upis.studij.opis}}</p>
+          <p class="mt-1"><strong>Semestar</strong></p>
+          <p>{{upis.semestar}}</p>
+          <p class="mt-1"><strong>Traje do</strong></p>
+          <p>{{upis.datumVrijemeDo}}</p>
+          <p class="mb-5"></p>
+          <div class="buttons is-centered">
+            <a *ngIf="upis.status === 'NIJE_ZAPOCET'" routerLink="/odabir-kolegija"><button class="button is-info">Upiši</button></a>
+            <button *ngIf="upis.status === 'U_TIJEKU'" class="button is-primary mr-1">Potvrdi upis</button>
+            <button *ngIf="upis.status === 'U_TIJEKU'" class="button is-danger mr-1" (click)="modalOtvoren = !modalOtvoren">Izbriši upis</button>
+            <button *ngIf="upis.status === 'ZAVRSEN'" class="button is-info mr-1">Pregledaj upis</button>
+          </div>
         </div>
         <hr>
       </div>
