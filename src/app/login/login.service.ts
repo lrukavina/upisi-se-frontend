@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {LoginForm} from "./loginForm";
 import {catchError, Observable, throwError} from "rxjs";
-import {Token} from "./token";
+import {Korisnik} from "./korisnik";
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +23,8 @@ export class LoginService {
   constructor(private http: HttpClient) {
   }
 
-  autentikacijaKorisnika(login: LoginForm): Observable<Token> {
-    return this.http.post<Token>(`${this.loginUrl}`, login, this.httpOptions).pipe(
+  autentikacijaKorisnika(login: LoginForm): Observable<Korisnik> {
+    return this.http.post<Korisnik>(`${this.loginUrl}`, login, this.httpOptions).pipe(
       catchError(this.handleError)
     );
   }

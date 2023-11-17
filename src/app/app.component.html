@@ -4,15 +4,21 @@
     <div class="level-item">
       <h1><strong>Upiši.se</strong></h1>
     </div>
-    <div class="level-item">
+    <div *ngIf="!isPregledUpisa()" class="level-item">
       <a routerLink="/pregled-upisa"><p>Početna stranica</p></a>
     </div>
   </div>
   <div class="level-right">
-    <div class="level-item">
+    <div *ngIf="!isLogin()" class="level-item">
       <a routerLink="/login"><p>Odjava</p></a>
     </div>
   </div>
 </div>
 </div>
+<div style="margin-left: 5%; margin-right: 5%;">
+  <div *ngIf="!isPregledUpisa()" class="box has-text-centered">
+    <p>Luka Rukavina (0246073114)</p>
+    <p>Specijalistički izvanredni studij informatike (RS) - Programsko inženjerstvo računarskih i ugradbenih sustava</p>
+    <p><strong>Semestar 3</strong></p>
+  </div>
 <router-outlet></router-outlet>

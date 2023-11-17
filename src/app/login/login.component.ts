@@ -19,8 +19,10 @@ export class LoginComponent {
     korisnickoIme = korisnickoIme.trim();
     lozinka = lozinka.trim();
 
-    this.loginService.autentikacijaKorisnika({korisnickoIme: korisnickoIme, lozinka: lozinka}).subscribe(token => {
-      sessionStorage.setItem('token', token.token);
+    this.loginService.autentikacijaKorisnika({korisnickoIme: korisnickoIme, lozinka: lozinka}).subscribe(korisnik => {
+      sessionStorage.setItem('token', korisnik.token);
+      sessionStorage.setItem('korisnickoIme', korisnik.korisnickoIme);
+      sessionStorage.setItem('rola', korisnik.rola);
       this.route.navigate(['/pregled-upisa']);
     }, error => {
       console.log(error);
