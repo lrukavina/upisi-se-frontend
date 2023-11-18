@@ -17,8 +17,9 @@
 </div>
 <div style="margin-left: 5%; margin-right: 5%;">
   <div *ngIf="!isPregledUpisa()" class="box has-text-centered">
-    <p>Luka Rukavina (0246073114)</p>
-    <p>Specijalistički izvanredni studij informatike (RS) - Programsko inženjerstvo računarskih i ugradbenih sustava</p>
-    <p><strong>Semestar 3</strong></p>
+    <p>{{korisnik.ime}} {{korisnik.prezime}} ({{korisnik.jmbag}})</p>
+    <p>{{korisnik.nazivStudija}} ({{korisnik.nazivSmjera}})</p>
+    <p><strong>Semestar {{korisnik.semestar}}</strong></p>
   </div>
 <router-outlet></router-outlet>
+</div>
