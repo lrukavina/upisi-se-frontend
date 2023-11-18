@@ -41,9 +41,7 @@ export class PotvrdaUpisaComponent implements OnInit {
   dohvatiUpisniList(): void {
     this.potvrdaUpisaService.dohvatiUpisniList()
       .subscribe(upisniList => {
-        if (upisniList != null) {
-          this.upisniList = upisniList;
-        }
+        this.upisniList = upisniList;
         console.log(upisniList);
       }, error => {
         console.log(error);
