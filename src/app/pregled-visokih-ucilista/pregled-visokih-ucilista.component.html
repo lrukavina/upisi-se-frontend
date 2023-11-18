@@ -32,109 +32,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>Fakultet političkih znanosti</td>
-          <td>Lepušićeva 6</td>
-          <td>10 000 Zagreb</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Fakultet prometnih znanosti</td>
-          <td>Vukelićeva 4</td>
-          <td>10 000 Zagreb</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Filozofski fakultet</td>
-          <td>Ivana Lučića 3</td>
-          <td>10 000 Zagreb</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td> Vrbik 8</td>
-          <td>10 000 Zagreb</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Stomatološki fakultet</td>
-          <td>Gundulićeva 5</td>
-          <td>10 000 Zagreb</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Medicinski fakultet</td>
-          <td>Šalata 3b</td>
-          <td>10 000 Zagreb</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Geodetski fakultet</td>
-          <td>Kačićeva 26</td>
-          <td>10 000 Zagreb</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Kineziološki fakultet</td>
-          <td>Horvaćanski zavoj 15</td>
-          <td>10 000 Zagreb</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Muzička akademija</td>
-          <td>Trg Republike Hrvatske 12</td>
-          <td>10 000 Zagreb</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Prirodoslovno-matematički fakultet-matematički odsjek</td>
-          <td>Bijenička cesta 30</td>
-          <td>10 000 Zagreb</td>
+        <tr *ngFor="let visokoUciliste of visokaUcilista">
+          <td>{{visokoUciliste.naziv}}</td>
+          <td>{{visokoUciliste.adresa}}</td>
+          <td>{{visokoUciliste.postanskiBroj}} {{visokoUciliste.mjesto}}</td>
           <td>
             <button class="button is-warning">Uredi</button>
           </td>
@@ -146,19 +47,6 @@
       </table>
     </div>
     <hr>
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-      <a class="pagination-previous">Prethodna stranica</a>
-      <a class="pagination-next">Sljedeća stranica</a>
-      <ul class="pagination-list">
-        <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
-        <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
-        <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
-      </ul>
-    </nav>
   </div>
 </div>
 
