@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PregledStudenataService} from "./pregled-studenata.service";
 import {Student} from "../common/student";
+import {SifraOpis} from "../common/sifraOpis";
 
 @Component({
   selector: 'app-pregled-studenata',
@@ -14,12 +15,16 @@ export class PregledStudenataComponent implements OnInit {
   studenti: Student[] = [];
   studentiPrikaz: Student[] = [];
 
+  visokaUcilista: SifraOpis[] = [];
+  studiji: SifraOpis[] = [];
+
   constructor(private pregledStudenataService: PregledStudenataService) {
   }
 
 
   ngOnInit(): void {
     this.dohvatiStudente();
+    this.dohvatiVisokaUcilista();
   }
 
   dohvatiStudente(): void {
@@ -28,6 +33,39 @@ export class PregledStudenataComponent implements OnInit {
         this.studenti = studenti;
         this.studentiPrikaz = studenti;
         console.log(studenti);
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  dohvatiVisokaUcilista(): void {
+    this.pregledStudenataService.dohvatiVisokaUcilista()
+      .subscribe(visokaUcilista => {
+        this.visokaUcilista = visokaUcilista;
+        this.visokaUcilista = visokaUcilista;
+        console.log(visokaUcilista);
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  dohvatiStudije(): void {
+    let visokoUcilisteSelect = document.getElementById('visokoUcilisteSelect') as HTMLInputElement;
+    let studijSelect = document.getElementById('studijSelect') as HTMLInputElement;
+
+    let visokoUcilisteSifra = visokoUcilisteSelect.value;
+
+    if(visokoUcilisteSifra === '') {
+      studijSelect.disabled = true;
+      return;
+    }
+
+    studijSelect.disabled = false;
+    this.pregledStudenataService.dohvatiStudije(visokoUcilisteSifra)
+      .subscribe(studiji => {
+        this.studiji = studiji;
+        this.studiji = studiji;
+        console.log(studiji);
       }, error => {
         console.log(error);
       });

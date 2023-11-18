@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, throwError} from "rxjs";
 import {Student} from "../common/student";
+import {SifraOpis} from "../common/sifraOpis";
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,8 @@ import {Student} from "../common/student";
 export class PregledStudenataService {
 
   private studentiUrl = 'http://localhost:8080/api/korisnik/dohvati/studenti';
+  private visokaUcilistaUrl = 'http://localhost:8080/api/visoko-uciliste/dohvati/padajuci-izbornik';
+  private studijiUrl = 'http://localhost:8080/api/studij/dohvati/padajuci-izbornik';
 
   constructor(private http: HttpClient) {
   }
@@ -26,6 +29,16 @@ export class PregledStudenataService {
 
   dohvatiStudente(): Observable<Student[]> {
     return this.http.get<Student[]>(`${this.studentiUrl}`, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  dohvatiVisokaUcilista(): Observable<SifraOpis[]> {
+    return this.http.get<SifraOpis[]>(`${this.visokaUcilistaUrl}`, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  dohvatiStudije(visokoUcilisteSifra: string): Observable<SifraOpis[]> {
+    return this.http.get<SifraOpis[]>(`${this.studijiUrl}/${visokoUcilisteSifra}`, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 }

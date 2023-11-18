@@ -94,21 +94,48 @@
           </div>
         </div>
       </div>
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">Semestar</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="3">
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">Lozinka</label>
+            <div class="control">
+              <input class="input" type="password" placeholder="****">
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="field">
         <label class="label has-text-weight-medium has-text-centered">Visoko učilište</label>
         <div class="control">
           <div class="select is-fullwidth">
-            <select>
-              <option>Tehničko veleučilište u Zagrebu</option>
-              <option>Fakultet strojarstva i brodogradnje</option>
-              <option>Ekonomski fakultet u Zagrebu</option>
-              <option>Veleučilište Velika gorica</option>
-              <option>Veterinarski fakultet u Zagrebu</option>
-              <option>Fakultet elektrotehnike i računarstva</option>
+            <select id="visokoUcilisteSelect" (change)="dohvatiStudije()">
+              <option value="">Molimo odaberite...</option>
+              <option *ngFor="let visokoUciliste of visokaUcilista" [value]="visokoUciliste.sifra">{{visokoUciliste.opis}}</option>
             </select>
           </div>
         </div>
       </div>
+      <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Studij</label>
+        <div class="control">
+          <div class="select is-fullwidth">
+            <select id="studijSelect" disabled>
+              <option>Molimo odaberite...</option>
+              <option *ngFor="let studij of studiji" [value]="studij.sifra">{{studij.opis}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
       <div class="field is-grouped mt-5">
         <div class="control">
           <button class="button is-info">Dodaj</button>
@@ -117,6 +144,6 @@
           <button class="button is-danger">Odustani</button>
         </div>
       </div>
-    </section>
+    </footer>
   </div>
 </div>
