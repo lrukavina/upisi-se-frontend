@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {PregledStudenataService} from "./pregled-studenata.service";
 import {Student} from "../common/student";
 import {SifraOpis} from "../common/sifraOpis";
+import {KorisnikZahtjev} from "../common/korisnikZahtjev";
 
 @Component({
   selector: 'app-pregled-studenata',
@@ -55,7 +56,7 @@ export class PregledStudenataComponent implements OnInit {
 
     let visokoUcilisteSifra = visokoUcilisteSelect.value;
 
-    if(visokoUcilisteSifra === '') {
+    if (visokoUcilisteSifra === '') {
       studijSelect.disabled = true;
       return;
     }
@@ -84,6 +85,44 @@ export class PregledStudenataComponent implements OnInit {
       student.jmbag.toLowerCase().includes(str.toLowerCase()) ||
       student.visokoUciliste.opis.toLowerCase().includes(str.toLowerCase())
     );
+  }
+
+  spremiStudenta(ime: string,
+                 prezime: string,
+                 jmbag: string,
+                 semestar: string,
+                 adresa: string,
+                 lozinka: string,
+                 visokoUcilisteSifra: string,
+                 studijSifra: string): void {
+    ime = ime.trim();
+    prezime = prezime.trim();
+    jmbag = jmbag.trim();
+    semestar.trim();
+    adresa = adresa.trim();
+    lozinka = lozinka.trim();
+    let rola = 'STUDENT';
+    visokoUcilisteSifra = visokoUcilisteSifra.trim();
+    studijSifra = studijSifra.trim();
+
+    let student: KorisnikZahtjev = {
+      ime: ime,
+      prezime: prezime,
+      jmbag: jmbag,
+      semestar: Number(semestar),
+      adresa: adresa,
+      lozinka: lozinka,
+      rola: rola,
+      visokoUcilisteSifra: visokoUcilisteSifra,
+      studijSifra: studijSifra
+    }
+
+    this.pregledStudenataService.spremiStudenta(student)
+      .subscribe(student => {
+        window.location.reload();
+      }, error => {
+        console.log(error);
+      });
   }
 
 }
