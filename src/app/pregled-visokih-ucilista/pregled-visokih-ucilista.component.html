@@ -10,7 +10,8 @@
     </div>
     <div class="field mt-6 has-text-centered">
       <div class="control">
-        <input id="pretraga" class="input has-text-centered" style="width: 60%" type="text" (keydown)="pretrazi()" placeholder="Pretraga visokih učilišta">
+        <input id="pretraga" class="input has-text-centered" style="width: 60%" type="text" (keydown)="pretrazi()"
+               placeholder="Pretraga visokih učilišta">
       </div>
     </div>
     <div style="margin-bottom: 10vh">
@@ -61,13 +62,13 @@
       <div class="field">
         <label class="label has-text-weight-medium has-text-centered">Naziv visokog učilišta</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Tehničko veleučilište u Zagrebu">
+          <input class="input" type="text" placeholder="Tehničko veleučilište u Zagrebu" #naziv>
         </div>
       </div>
       <div class="field">
         <label class="label has-text-weight-medium has-text-centered">Adresa visokog učilišta</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Vrbik 8">
+          <input class="input" type="text" placeholder="Vrbik 8" #adresa>
         </div>
       </div>
       <div class="columns">
@@ -75,7 +76,7 @@
           <div class="field">
             <label class="label has-text-weight-medium has-text-centered">Poštanski broj visokog učilišta</label>
             <div class="control">
-              <input class="input" type="text" placeholder="10 000">
+              <input class="input" type="text" placeholder="10 000" #postanskiBroj>
             </div>
           </div>
         </div>
@@ -83,17 +84,38 @@
           <div class="field">
             <label class="label has-text-weight-medium has-text-centered">Mjesto visokog učilišta</label>
             <div class="control">
-              <input class="input" type="text" placeholder="Zagreb">
+              <input class="input" type="text" placeholder="Zagreb" #mjesto>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">Iban visokog učilišta</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="HR1723600001101234565" #iban>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">Oib visokog učilišta</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="30156301793" #oib>
             </div>
           </div>
         </div>
       </div>
       <div class="field is-grouped mt-5">
         <div class="control">
-          <button class="button is-info">Dodaj</button>
+          <button class="button is-info"
+                  (click)="spremiVisokoUciliste('', naziv.value, adresa.value, postanskiBroj.value, mjesto.value, iban.value, oib.value, false)">
+            Dodaj
+          </button>
         </div>
         <div class="control">
-          <button class="button is-danger">Odustani</button>
+          <button (click)="modalOtvoren = !modalOtvoren" class="button is-danger">Odustani</button>
         </div>
       </div>
     </section>
