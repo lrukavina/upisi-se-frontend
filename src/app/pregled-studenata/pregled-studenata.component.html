@@ -38,7 +38,10 @@
           <td>{{student.jmbag}}</td>
           <td>{{student.visokoUciliste.opis}}</td>
           <td>
-            <button class="button is-warning" (click)="dohvatiStudenta(student.korisnickoIme)">Uredi</button>
+            <button class="button is-warning"
+                    (click)="dohvatiStudenta(student.korisnickoIme); dohvatiStudijeEdit(student.visokoUciliste.sifra); modalEditOtvoren = !modalEditOtvoren">
+              Uredi
+            </button>
           </td>
           <td>
             <button class="button is-danger"
@@ -144,12 +147,117 @@
       <div class="field is-grouped mt-5">
         <div class="control">
           <button class="button is-info"
-                  (click)="spremiStudenta(ime.value,prezime.value,jmbag.value,semestar.value,adresa.value,lozinka.value, visokoUcilisteSIf.value, studijSif.value)">
+                  (click)="spremiStudenta(ime.value,prezime.value,jmbag.value,semestar.value,adresa.value,lozinka.value, visokoUcilisteSIf.value, studijSif.value, false)">
             Dodaj
           </button>
         </div>
         <div class="control">
           <button (click)="modalOtvoren = !modalOtvoren" class="button is-danger">Odustani</button>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+
+
+<div *ngIf="modalEditOtvoren" class="modal is-active">
+  <div class="modal-background" (click)="modalEditOtvoren = !modalEditOtvoren"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Uredi studenta</p>
+      <button class="delete" aria-label="close" (click)="modalEditOtvoren = !modalEditOtvoren"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">Ime studenta</label>
+            <div class="control">
+              <input class="input" value="{{student.ime}}" type="text" placeholder="Ivan" #ime>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">Prezime studenta</label>
+            <div class="control">
+              <input class="input" value="{{student.prezime}}" type="text" placeholder="Horvat" #prezime>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">JMBAG studenta</label>
+            <div class="control">
+              <input class="input" value="{{student.jmbag}}" type="text" placeholder="2015567433" #jmbag>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">Adresa studenta</label>
+            <div class="control">
+              <input class="input" value="{{student.adresa}}" type="text" placeholder="Ilica 25" #adresa>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">Semestar</label>
+            <div class="control">
+              <input class="input" value="{{student.semestar}}" type="text" placeholder="3" #semestar>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">Lozinka</label>
+            <div class="control">
+              <input class="input" type="password" placeholder="****" #lozinka>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Visoko učilište</label>
+        <div class="control">
+          <div class="select is-fullwidth">
+            <select id="visokoUcilisteSelect" (change)="dohvatiStudije()" #visokoUcilisteSIf>
+              <option value="">Molimo odaberite...</option>
+              <option *ngFor="let visokoUciliste of visokaUcilista"
+                      [value]="visokoUciliste.sifra"
+                      [selected]="visokoUciliste.sifra === student.visokoUciliste.sifra">{{visokoUciliste.opis}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Studij</label>
+        <div class="control">
+          <div class="select is-fullwidth">
+            <select id="studijSelect" #studijSif>
+              <option>Molimo odaberite...</option>
+              <option *ngFor="let studij of studiji" [value]="studij.sifra"
+                      [selected]="studij.sifra === student.studij.sifra">{{studij.opis}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <div class="field is-grouped mt-5">
+        <div class="control">
+          <button class="button is-info"
+                  (click)="spremiStudenta(ime.value,prezime.value,jmbag.value,semestar.value,adresa.value,lozinka.value, visokoUcilisteSIf.value, studijSif.value, true)">
+            Uredi
+          </button>
+        </div>
+        <div class="control">
+          <button (click)="modalEditOtvoren = !modalEditOtvoren" class="button is-danger">Odustani</button>
         </div>
       </div>
     </footer>

@@ -12,6 +12,7 @@ import {KorisnikZahtjev} from "../common/korisnikZahtjev";
 export class PregledStudenataComponent implements OnInit {
 
   modalOtvoren = false;
+  modalEditOtvoren = false;
   modalBrisanjeOtvoren = false;
 
   studenti: Student[] = [];
@@ -100,6 +101,17 @@ export class PregledStudenataComponent implements OnInit {
       });
   }
 
+  dohvatiStudijeEdit(visokoUcilisteSifra: string): void {
+    this.pregledStudenataService.dohvatiStudije(visokoUcilisteSifra)
+      .subscribe(studiji => {
+        this.studiji = studiji;
+        this.studiji = studiji;
+        console.log(studiji);
+      }, error => {
+        console.log(error);
+      });
+  }
+
 
   pretrazi(): void {
     let inputPolje = document.getElementById('pretraga') as HTMLInputElement;
@@ -122,7 +134,8 @@ export class PregledStudenataComponent implements OnInit {
                  adresa: string,
                  lozinka: string,
                  visokoUcilisteSifra: string,
-                 studijSifra: string): void {
+                 studijSifra: string,
+                 isAzuriranje: boolean): void {
     ime = ime.trim();
     prezime = prezime.trim();
     jmbag = jmbag.trim();
@@ -145,7 +158,17 @@ export class PregledStudenataComponent implements OnInit {
       studijSifra: studijSifra
     }
 
-    this.pregledStudenataService.spremiStudenta(student)
+    if(!isAzuriranje) {
+      this.pregledStudenataService.spremiStudenta(student)
+        .subscribe(student => {
+          window.location.reload();
+          return;
+        }, error => {
+          console.log(error);
+        });
+    }
+
+    this.pregledStudenataService.azurirajStudenta(student, this.student.korisnickoIme)
       .subscribe(student => {
         window.location.reload();
       }, error => {

@@ -16,6 +16,7 @@ export class PregledStudenataService {
   private visokaUcilistaUrl = 'http://localhost:8080/api/visoko-uciliste/dohvati/padajuci-izbornik';
   private studijiUrl = 'http://localhost:8080/api/studij/dohvati/padajuci-izbornik';
   private spremiStudentaUrl = 'http://localhost:8080/api/auth/registracija';
+  private azurirajStudentaUrl = 'http://localhost:8080/api/korisnik/azuriraj';
 
   constructor(private http: HttpClient) {
   }
@@ -53,6 +54,11 @@ export class PregledStudenataService {
 
   spremiStudenta(student: KorisnikZahtjev): Observable<KorisnikZahtjev[]> {
     return this.http.post<KorisnikZahtjev[]>(`${this.spremiStudentaUrl}`, student, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  azurirajStudenta(student: KorisnikZahtjev, korisnickoIme: string): Observable<KorisnikZahtjev[]> {
+    return this.http.put<KorisnikZahtjev[]>(`${this.azurirajStudentaUrl}/${korisnickoIme}`, student, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
