@@ -5,87 +5,56 @@
           <h1><b>Obavezni kolegiji:</b></h1>
         </div>
       </div>
-      <table class="table tablica has-text-centered is-fullwidth">
-        <thead>
-        <tr>
-          <th class="tablica has-text-centered">Naziv kolegija</th>
-          <th class="tablica has-text-centered">Semestar</th>
-          <th class="tablica has-text-centered">ECTS bodovi</th>
-          <th class="tablica has-text-centered">Odabir</th>
-          <th class="has-text-centered">Informacije o kolegiju</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>NOSQL i napredna big data analitika</td>
-          <td>3</td>
-          <td>6</td>
-          <td><input type="checkbox" disabled checked></td>
-          <td><button class="button is-info" (click)="modalOtvoren = !modalOtvoren">Pregled</button> </td>
-        </tr>
-        <tr>
-          <td>Alati i postupci umjetne inteligencije</td>
-          <td>3</td>
-          <td>6</td>
-          <td><input type="checkbox" disabled checked></td>
-          <td><button class="button is-info" (click)="modalOtvoren = !modalOtvoren">Pregled</button> </td>
-        </tr>
-        <tr>
-          <td>Reinžinjering poslovnih procesa</td>
-          <td>3</td>
-          <td>6</td>
-          <td><input type="checkbox" disabled checked></td>
-          <td><button class="button is-info" (click)="modalOtvoren = !modalOtvoren">Pregled</button> </td>
-        </tr>
-        </tbody>
-      </table>
+      <div class="tablica-wrapper">
+        <table class="table tablica has-text-centered is-fullwidth">
+          <thead>
+          <tr>
+            <th class="tablica has-text-centered">Naziv kolegija</th>
+            <th class="tablica has-text-centered">Semestar</th>
+            <th class="tablica has-text-centered">ECTS bodovi</th>
+            <th class="tablica has-text-centered">Odabir</th>
+            <th class="has-text-centered">Informacije o kolegiju</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let obavezniKolegij of upis.obavezniKolegiji">
+            <td>{{obavezniKolegij.opis}}</td>
+            <td>{{obavezniKolegij.semestar}}</td>
+            <td>{{obavezniKolegij.ects}}</td>
+            <td><input type="checkbox" disabled checked></td>
+            <td><button class="button is-info" (click)="modalOtvoren = !modalOtvoren">Pregled</button> </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
 
       <div class="columns mt-6">
         <div class="column has-background-primary has-text-white">
           <h1><b>Izborni kolegiji:</b></h1>
         </div>
       </div>
-      <table class="table has-text-centered is-fullwidth">
-        <thead>
-        <tr>
-          <th class="tablica has-text-centered">Naziv kolegija</th>
-          <th class="tablica has-text-centered">Semestar</th>
-          <th class="tablica has-text-centered">ECTS bodovi</th>
-          <th class="tablica has-text-centered">Odabir</th>
-          <th class="has-text-centered">Informacije o kolegiju</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>Projektiranje inovacija</td>
-          <td>3</td>
-          <td>6</td>
-          <td><input type="checkbox"></td>
-          <td><button class="button is-info" (click)="modalOtvoren = !modalOtvoren">Pregled</button> </td>
-        </tr>
-        <tr class="is-vcentered">
-          <td>Napredne tehnike projektiranja web servisa</td>
-          <td>3</td>
-          <td>6</td>
-          <td><input type="checkbox"></td>
-          <td><button class="button is-info" (click)="modalOtvoren = !modalOtvoren">Pregled</button> </td>
-        </tr>
-        <tr>
-          <td>Razvoj mobilnih aplikacija</td>
-          <td>3</td>
-          <td>6</td>
-          <td><input type="checkbox"></td>
-          <td><button class="button is-info" (click)="modalOtvoren = !modalOtvoren">Pregled</button> </td>
-        </tr>
-        <tr>
-          <td>Modeliranje i administracija baza podataka</td>
-          <td>3</td>
-          <td>6</td>
-          <td><input type="checkbox"></td>
-          <td><button class="button is-info" (click)="modalOtvoren = !modalOtvoren">Pregled</button> </td>
-        </tr>
-        </tbody>
-      </table>
+      <div class="tablica-wrapper">
+        <table class="table has-text-centered is-fullwidth">
+          <thead>
+          <tr>
+            <th class="tablica has-text-centered">Naziv kolegija</th>
+            <th class="tablica has-text-centered">Semestar</th>
+            <th class="tablica has-text-centered">ECTS bodovi</th>
+            <th class="tablica has-text-centered">Odabir</th>
+            <th class="has-text-centered">Informacije o kolegiju</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let izborniKolegij of upis.izborniKolegiji">
+            <td>{{izborniKolegij.opis}}</td>
+            <td>{{izborniKolegij.semestar}}</td>
+            <td>{{izborniKolegij.ects}}</td>
+            <td><input type="checkbox"></td>
+            <td><button class="button is-info" (click)="modalOtvoren = !modalOtvoren">Pregled</button> </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div class="columns mt-3">
       <div class="column has-text-centered">
