@@ -10,7 +10,8 @@
     </div>
     <div class="field mt-6 has-text-centered">
       <div class="control">
-        <input class="input has-text-centered" style="width: 60%" type="email" placeholder="Pretraga visokih učilišta">
+        <input id="pretraga" class="input has-text-centered" style="width: 60%" type="text" (keydown)="pretrazi()"
+               placeholder="Pretraga visokih učilišta">
       </div>
     </div>
     <div style="margin-bottom: 10vh">
@@ -32,133 +33,21 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>Fakultet političkih znanosti</td>
-          <td>Lepušićeva 6</td>
-          <td>10 000 Zagreb</td>
+        <tr *ngFor="let visokoUciliste of visokaUcilistaPrikaz">
+          <td>{{visokoUciliste.naziv}}</td>
+          <td>{{visokoUciliste.adresa}}</td>
+          <td>{{visokoUciliste.postanskiBroj}} {{visokoUciliste.mjesto}}</td>
           <td>
-            <button class="button is-warning">Uredi</button>
+            <button class="button is-warning" (click)="dohvatiVisokoUciliste(visokoUciliste.sifra); modalEditOtvoren = !modalEditOtvoren">Uredi</button>
           </td>
           <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Fakultet prometnih znanosti</td>
-          <td>Vukelićeva 4</td>
-          <td>10 000 Zagreb</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Filozofski fakultet</td>
-          <td>Ivana Lučića 3</td>
-          <td>10 000 Zagreb</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td> Vrbik 8</td>
-          <td>10 000 Zagreb</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Stomatološki fakultet</td>
-          <td>Gundulićeva 5</td>
-          <td>10 000 Zagreb</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Medicinski fakultet</td>
-          <td>Šalata 3b</td>
-          <td>10 000 Zagreb</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Geodetski fakultet</td>
-          <td>Kačićeva 26</td>
-          <td>10 000 Zagreb</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Kineziološki fakultet</td>
-          <td>Horvaćanski zavoj 15</td>
-          <td>10 000 Zagreb</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Muzička akademija</td>
-          <td>Trg Republike Hrvatske 12</td>
-          <td>10 000 Zagreb</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Prirodoslovno-matematički fakultet-matematički odsjek</td>
-          <td>Bijenička cesta 30</td>
-          <td>10 000 Zagreb</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
+            <button class="button is-danger" (click)="dohvatiVisokoUciliste(visokoUciliste.sifra); modalBrisanjeOtvoren = !modalBrisanjeOtvoren">Izbriši</button>
           </td>
         </tr>
         </tbody>
       </table>
     </div>
     <hr>
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-      <a class="pagination-previous">Prethodna stranica</a>
-      <a class="pagination-next">Sljedeća stranica</a>
-      <ul class="pagination-list">
-        <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
-        <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
-        <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
-      </ul>
-    </nav>
   </div>
 </div>
 
@@ -173,13 +62,13 @@
       <div class="field">
         <label class="label has-text-weight-medium has-text-centered">Naziv visokog učilišta</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Tehničko veleučilište u Zagrebu">
+          <input class="input" type="text" placeholder="Tehničko veleučilište u Zagrebu" #naziv>
         </div>
       </div>
       <div class="field">
         <label class="label has-text-weight-medium has-text-centered">Adresa visokog učilišta</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Vrbik 8">
+          <input class="input" type="text" placeholder="Vrbik 8" #adresa>
         </div>
       </div>
       <div class="columns">
@@ -187,7 +76,7 @@
           <div class="field">
             <label class="label has-text-weight-medium has-text-centered">Poštanski broj visokog učilišta</label>
             <div class="control">
-              <input class="input" type="text" placeholder="10 000">
+              <input class="input" type="text" placeholder="10 000" #postanskiBroj>
             </div>
           </div>
         </div>
@@ -195,19 +84,136 @@
           <div class="field">
             <label class="label has-text-weight-medium has-text-centered">Mjesto visokog učilišta</label>
             <div class="control">
-              <input class="input" type="text" placeholder="Zagreb">
+              <input class="input" type="text" placeholder="Zagreb" #mjesto>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">Iban visokog učilišta</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="HR1723600001101234565" #iban>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">Oib visokog učilišta</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="30156301793" #oib>
             </div>
           </div>
         </div>
       </div>
       <div class="field is-grouped mt-5">
         <div class="control">
-          <button class="button is-info">Dodaj</button>
+          <button class="button is-info"
+                  (click)="spremiVisokoUciliste('', naziv.value, adresa.value, postanskiBroj.value, mjesto.value, iban.value, oib.value, false)">
+            Dodaj
+          </button>
         </div>
         <div class="control">
-          <button class="button is-danger">Odustani</button>
+          <button (click)="modalOtvoren = !modalOtvoren" class="button is-danger">Odustani</button>
         </div>
       </div>
     </section>
+  </div>
+</div>
+
+<div *ngIf="modalEditOtvoren" class="modal is-active">
+  <div class="modal-background" (click)="modalEditOtvoren = !modalEditOtvoren"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Uredi visoko učilište</p>
+      <button class="delete" aria-label="close" (click)="modalEditOtvoren = !modalEditOtvoren"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Naziv visokog učilišta</label>
+        <div class="control">
+          <input class="input" value="{{visokoUciliste.naziv}}" type="text" placeholder="Tehničko veleučilište u Zagrebu" #naziv>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Adresa visokog učilišta</label>
+        <div class="control">
+          <input class="input" value="{{visokoUciliste.adresa}}" type="text" placeholder="Vrbik 8" #adresa>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">Poštanski broj visokog učilišta</label>
+            <div class="control">
+              <input class="input" value="{{visokoUciliste.postanskiBroj}}" type="text" placeholder="10 000" #postanskiBroj>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">Mjesto visokog učilišta</label>
+            <div class="control">
+              <input class="input" value="{{visokoUciliste.mjesto}}" type="text" placeholder="Zagreb" #mjesto>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">Iban visokog učilišta</label>
+            <div class="control">
+              <input class="input" value="{{visokoUciliste.iban}}" type="text" placeholder="HR1723600001101234565" #iban>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">Oib visokog učilišta</label>
+            <div class="control">
+              <input class="input" value="{{visokoUciliste.oib}}" type="text" placeholder="30156301793" #oib>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field is-grouped mt-5">
+        <div class="control">
+          <button class="button is-info"
+                  (click)="spremiVisokoUciliste('', naziv.value, adresa.value, postanskiBroj.value, mjesto.value, iban.value, oib.value, true)">
+            Uredi
+          </button>
+        </div>
+        <div class="control">
+          <button (click)="modalEditOtvoren = !modalEditOtvoren" class="button is-danger">Odustani</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div *ngIf="modalBrisanjeOtvoren" class="modal is-active">
+  <div class="modal-background" (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Potvrdite brisanje visokog učilišta</p>
+      <button class="delete" aria-label="close" (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren"></button>
+    </header>
+    <section class="modal-card-body">
+      <h1><b>Jeste li sigurni da želite izbrisati visoko učilište?</b></h1>
+      <hr>
+      <div class="has-text-centered">
+        <p><b>Naziv:</b></p>
+        <p>{{visokoUciliste.naziv}}</p>
+        <p class="mt-5"><b>Adresa:</b></p>
+        <p>{{visokoUciliste.adresa}} {{visokoUciliste.postanskiBroj}} {{visokoUciliste.mjesto}}</p>
+      </div>
+      <hr>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-danger" (click)="izbrisiVisokoUciliste(visokoUciliste.sifra)">Izbriši</button>
+      <button class="button" (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren">Odustani</button>
+    </footer>
   </div>
 </div>
