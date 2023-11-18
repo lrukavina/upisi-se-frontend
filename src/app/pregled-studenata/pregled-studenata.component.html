@@ -10,7 +10,7 @@
     </div>
     <div class="field mt-6 has-text-centered">
       <div class="control">
-        <input class="input has-text-centered" style="width: 60%" type="email" placeholder="Pretraga studenata">
+        <input id="pretraga" class="input has-text-centered" style="width: 60%" type="text" (keydown)="pretrazi()" placeholder="Pretraga studenata">
       </div>
     </div>
     <div style="margin-bottom: 10vh">
@@ -32,7 +32,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let student of studenti">
+        <tr *ngFor="let student of studentiPrikaz">
           <td>{{student.ime}} {{student.prezime}}</td>
           <td>{{student.jmbag}}</td>
           <td>{{student.visokoUciliste.opis}}</td>
