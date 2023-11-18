@@ -32,109 +32,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>Pero Perić</td>
-          <td>0246073114</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Ivo Ivić</td>
-          <td>0246073114</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Mara Marić</td>
-          <td>0246073114</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Đuro Đurić</td>
-          <td>0246073114</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Maja Majić</td>
-          <td>0246073114</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Zoran Zorić</td>
-          <td>0246073114</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Gogo Gogić</td>
-          <td>0246073114</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Tara Tarić</td>
-          <td>0246073114</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Mijo Mijić</td>
-          <td>0246073114</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Igor Igorić</td>
-          <td>0246073114</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
+        <tr *ngFor="let student of studenti">
+          <td>{{student.ime}} {{student.prezime}}</td>
+          <td>{{student.jmbag}}</td>
+          <td>{{student.visokoUciliste.opis}}</td>
           <td>
             <button class="button is-warning">Uredi</button>
           </td>
@@ -144,21 +45,8 @@
         </tr>
         </tbody>
       </table>
+      <hr>
     </div>
-    <hr>
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-      <a class="pagination-previous">Prethodna stranica</a>
-      <a class="pagination-next">Sljedeća stranica</a>
-      <ul class="pagination-list">
-        <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
-        <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
-        <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
-      </ul>
-    </nav>
   </div>
 </div>
 
