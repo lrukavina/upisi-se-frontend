@@ -11,6 +11,7 @@ export class PregledVisokihUcilistaComponent implements OnInit {
 
   modalOtvoren = false;
   modalEditOtvoren = false;
+  modalBrisanjeOtvoren = false;
 
   visokaUcilista: VisokoUciliste[] = [];
   visokaUcilistaPrikaz: VisokoUciliste[] = [];
@@ -107,6 +108,15 @@ export class PregledVisokihUcilistaComponent implements OnInit {
       .subscribe(visokoUciliste => {
         this.visokoUciliste = visokoUciliste;
         console.log(visokoUciliste);
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  izbrisiVisokoUciliste(sifra: string): void {
+    this.pregledVisokihUcilistaService.izbrisiVisokoUciliste(sifra)
+      .subscribe(visokoUciliste => {
+        window.location.reload();
       }, error => {
         console.log(error);
       });

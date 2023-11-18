@@ -41,7 +41,7 @@
             <button class="button is-warning" (click)="dohvatiVisokoUciliste(visokoUciliste.sifra); modalEditOtvoren = !modalEditOtvoren">Uredi</button>
           </td>
           <td>
-            <button class="button is-danger" (click)="dohvatiVisokoUciliste(visokoUciliste.sifra)">Izbriši</button>
+            <button class="button is-danger" (click)="dohvatiVisokoUciliste(visokoUciliste.sifra); modalBrisanjeOtvoren = !modalBrisanjeOtvoren">Izbriši</button>
           </td>
         </tr>
         </tbody>
@@ -190,5 +190,30 @@
         </div>
       </div>
     </section>
+  </div>
+</div>
+
+<div *ngIf="modalBrisanjeOtvoren" class="modal is-active">
+  <div class="modal-background" (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Potvrdite brisanje visokog učilišta</p>
+      <button class="delete" aria-label="close" (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren"></button>
+    </header>
+    <section class="modal-card-body">
+      <h1><b>Jeste li sigurni da želite izbrisati visoko učilište?</b></h1>
+      <hr>
+      <div class="has-text-centered">
+        <p><b>Naziv:</b></p>
+        <p>{{visokoUciliste.naziv}}</p>
+        <p class="mt-5"><b>Adresa:</b></p>
+        <p>{{visokoUciliste.adresa}} {{visokoUciliste.postanskiBroj}} {{visokoUciliste.mjesto}}</p>
+      </div>
+      <hr>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-danger" (click)="izbrisiVisokoUciliste(visokoUciliste.sifra)">Izbriši</button>
+      <button class="button" (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren">Odustani</button>
+    </footer>
   </div>
 </div>
