@@ -7,6 +7,7 @@ import {OdabirKolegijaService} from "./odabir-kolegija.service";
 import {KolegijPregled} from "../common/kolegijPregled";
 import {KolegijInfo} from "../common/kolegijInfo";
 import {Nastavnik} from "../common/nastavnik";
+import {OdabraniKolegij} from "../common/odabraniKolegij";
 
 @Component({
   selector: 'app-odabir-kolegija',
@@ -123,4 +124,31 @@ export class OdabirKolegijaComponent {
     this.aktivniTab = 'osnovneInformacije';
   }
 
+  odaberiKolegije(): void {
+    let odabraniKolegijiElement = document.getElementsByClassName('odabirKolegija');
+    let odabraniKolegijiArr = Array.from(odabraniKolegijiElement);
+
+    let kolegiji: string[] = [];
+
+    const odabraniKolegiji: HTMLInputElement[] =
+      odabraniKolegijiArr
+        .filter((element) => element instanceof HTMLInputElement) as HTMLInputElement[];
+
+    odabraniKolegiji.forEach(kolegij => {
+      if (!kolegij.checked) {
+        return;
+      }
+      kolegiji.push(kolegij.id);
+    });
+
+    let odabraneKolegijSifre: OdabraniKolegij = {
+      kolegijSifre: kolegiji
+    }
+
+    this.odabirKolegijaService.azurirajKolegije(odabraneKolegijSifre).subscribe(odabraniKolegiji => {
+      console.log(odabraniKolegiji);
+    }, error => {
+      console.log(error);
+    });
+  }
 }

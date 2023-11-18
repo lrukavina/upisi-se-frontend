@@ -21,7 +21,7 @@
             <td>{{obavezniKolegij.opis}}</td>
             <td>{{obavezniKolegij.semestar}}</td>
             <td>{{obavezniKolegij.ects}}</td>
-            <td><input type="checkbox" disabled checked></td>
+            <td><input id="{{obavezniKolegij.sifra}}" class="odabirKolegija" type="checkbox" disabled checked></td>
             <td><button class="button is-info" (click)="modalOtvoren = !modalOtvoren; dohvatiKolegijpregled(obavezniKolegij.sifra)">Pregled</button> </td>
           </tr>
           </tbody>
@@ -49,7 +49,7 @@
             <td>{{izborniKolegij.opis}}</td>
             <td>{{izborniKolegij.semestar}}</td>
             <td>{{izborniKolegij.ects}}</td>
-            <td><input type="checkbox"></td>
+            <td><input id="{{izborniKolegij.sifra}}" class="odabirKolegija" type="checkbox"></td>
             <td><button class="button is-info" (click)="modalOtvoren = !modalOtvoren; dohvatiKolegijpregled(izborniKolegij.sifra)">Pregled</button> </td>
           </tr>
           </tbody>
@@ -58,7 +58,7 @@
     </div>
     <div class="columns mt-3">
       <div class="column has-text-centered">
-        <a routerLink="/potvrda-upisa"><button class="button is-info">Odaberi kolegije</button></a>
+        <button (click)="odaberiKolegije()" class="button is-info">Odaberi kolegije</button>
       </div>
     </div>
     <hr>
