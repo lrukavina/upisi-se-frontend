@@ -8,6 +8,7 @@ import {KolegijPregled} from "../common/kolegijPregled";
 import {KolegijInfo} from "../common/kolegijInfo";
 import {Nastavnik} from "../common/nastavnik";
 import {OdabraniKolegij} from "../common/odabraniKolegij";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-odabir-kolegija',
@@ -67,7 +68,8 @@ export class OdabirKolegijaComponent {
 
   constructor(
     private pregledUpisaService: PregledUpisaService,
-    private odabirKolegijaService: OdabirKolegijaService
+    private odabirKolegijaService: OdabirKolegijaService,
+    private route: Router
   ) {
   }
 
@@ -150,5 +152,7 @@ export class OdabirKolegijaComponent {
     }, error => {
       console.log(error);
     });
+
+    this.route.navigate(['/potvrda-upisa']);
   }
 }
