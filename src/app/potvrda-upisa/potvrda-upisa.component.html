@@ -1,14 +1,15 @@
-<div style="margin-left: 5%; margin-right: 5%;">
-  <div class="box has-text-centered">
-    <p>Luka Rukavina (0246073114)</p>
-    <p>Specijalistički izvanredni studij informatike (RS) - Programsko inženjerstvo računarskih i ugradbenih sustava</p>
-    <p><strong>Semestar 3</strong></p>
-  </div>
-  <div class="box">
-    <div class="ml-6 mr-6">
+<div class="box">
+    <div>
       <div class="columns">
         <div class="column has-background-primary has-text-white">
-          <h1><b>Odabrani kolegiji:</b></h1>
+          <div class="level">
+            <div class="level-left">
+              <h1><b>Odabrani kolegiji:</b></h1>
+            </div>
+            <div class="level-right">
+              <h1><b>{{upisniList.upisniBroj}}</b></h1>
+            </div>
+          </div>
         </div>
       </div>
       <div class="tablica-wrapper">
@@ -19,50 +20,18 @@
             <th class="has-text-centered">Semestar</th>
             <th class="has-text-centered">ISVU šifra</th>
             <th class="has-text-centered">ECTS bodovi</th>
-            <th class="has-text-centered">Broj upisa</th>
+            <th class="has-text-centered">Obavezan</th>
             <th class="has-text-centered">Cijena</th>
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>NOSQL i napredna big data analitika</td>
-            <td>3</td>
-            <td>130968</td>
-            <td>6</td>
-            <td>1</td>
-            <td>200 EUR</td>
-          </tr>
-          <tr>
-            <td>Alati i postupci umjetne inteligencije</td>
-            <td>3</td>
-            <td>130969</td>
-            <td>6</td>
-            <td>1</td>
-            <td>200 EUR</td>
-          </tr>
-          <tr>
-            <td>Reinžinjering poslovnih procesa</td>
-            <td>3</td>
-            <td>212898</td>
-            <td>6</td>
-            <td>1</td>
-            <td>200 EUR</td>
-          </tr>
-          <tr>
-            <td>Napredne tehnike projektiranja web servisa</td>
-            <td>3</td>
-            <td>551042</td>
-            <td>6</td>
-            <td>1</td>
-            <td>200 EUR</td>
-          </tr>
-          <tr>
-            <td>Projektiranje inovacija</td>
-            <td>3</td>
-            <td>189415</td>
-            <td>6</td>
-            <td>1</td>
-            <td>200 EUR</td>
+          <tr *ngFor="let kolegij of upisniList.odabraniKolegiji">
+            <td>{{kolegij.naziv}}</td>
+            <td>{{kolegij.semestar}}</td>
+            <td>{{kolegij.isvuSifra}}</td>
+            <td>{{kolegij.semestar}}</td>
+            <td>{{kolegij.obavezan ? 'DA' : 'NE'}}</td>
+            <td>{{kolegij.cijena}}</td>
           </tr>
           </tbody>
         </table>
@@ -78,7 +47,7 @@
             </div>
           </div>
           <div class="level-right">
-            <p>1000 EUR</p>
+            <p>{{upisniList.ukupnaCijena}}</p>
           </div>
         </div>
         <div class="level">
@@ -88,7 +57,7 @@
             </div>
           </div>
           <div class="level-right">
-            <p>33,33 EUR</p>
+            <p>{{upisniList.cijenaPoEctsu}}</p>
           </div>
         </div>
         <div class="level">
@@ -98,7 +67,7 @@
             </div>
           </div>
           <div class="level-right">
-            <p>30</p>
+            <p>{{upisniList.brojEctsa}}</p>
           </div>
         </div>
       </div>
@@ -109,4 +78,3 @@
       </div>
     </div>
   </div>
-</div>

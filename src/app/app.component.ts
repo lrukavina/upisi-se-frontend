@@ -25,8 +25,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.login = this.isLogin();
     this.dohvatiKorisnikInfo();
+    this.login = this.isLogin();
   }
 
 
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
   }
 
   isPregledUpisa(): boolean {
-    return this.isLogin() || this.router.url === '/pregled-upisa'
+    return this.isLogin() || this.router.url === '/pregled-upisa';
   }
 
   dohvatiKorisnikInfo(): void {
@@ -50,4 +50,11 @@ export class AppComponent implements OnInit {
       });
   }
 
+  isStudent(): boolean {
+    return sessionStorage.getItem('rola') === 'STUDENT';
+  }
+
+  odjaviKorisnika(): void {
+    sessionStorage.clear();
+  }
 }

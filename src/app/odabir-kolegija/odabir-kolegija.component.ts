@@ -153,6 +153,9 @@ export class OdabirKolegijaComponent {
       console.log(error);
     });
 
-    this.route.navigate(['/potvrda-upisa']);
+    setTimeout(() => {
+        this.route.navigate(['/potvrda-upisa']);
+      },
+      100);
   }
 }

@@ -3,6 +3,7 @@ import {Upis} from "./upis";
 import {SifraOpis} from "../common/sifraOpis";
 import {Kolegij} from "../common/kolegij";
 import {PregledUpisaService} from "./pregled-upisa.service";
+import {AppComponent} from "../app.component";
 
 @Component({
   selector: 'app-pregled-upisa',
@@ -44,11 +45,16 @@ export class PregledUpisaComponent implements OnInit {
   }
 
   constructor(
-    private pregledUpisaService: PregledUpisaService
+    private pregledUpisaService: PregledUpisaService,
+    private appComponent: AppComponent
   ) {
   }
 
   ngOnInit(): void {
+    if (sessionStorage.getItem('refresh') === '1') {
+      sessionStorage.setItem('refresh', '0');
+      window.location.reload();
+    }
     this.dohvatiAktivneUpise();
   }
 
