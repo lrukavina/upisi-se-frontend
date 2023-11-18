@@ -9,6 +9,7 @@ import {VisokoUciliste} from "../common/visokoUciliste";
 export class PregledVisokihUcilistaService {
 
   private visokaUcilistaUrl = 'http://localhost:8080/api/visoko-uciliste/dohvati/sve';
+  private visokoUcilisteUrl = 'http://localhost:8080/api/visoko-uciliste/dohvati'
   private spremiVisokoUcilisteUrl = 'http://localhost:8080/api/visoko-uciliste/spremi';
   private azurirajVisokoUcilisteUrl = 'http://localhost:8080/api/visoko-uciliste/azuriraj';
 
@@ -32,13 +33,18 @@ export class PregledVisokihUcilistaService {
       .pipe(catchError(this.handleError));
   }
 
+  dohvatiVisokoUciliste(sifra: string): Observable<VisokoUciliste> {
+    return this.http.get<VisokoUciliste>(`${this.visokoUcilisteUrl}/${sifra}`, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
   spremiVisokoUciliste(visokoUciliste: VisokoUciliste): Observable<VisokoUciliste> {
     return this.http.post<VisokoUciliste>(`${this.spremiVisokoUcilisteUrl}`, visokoUciliste, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
   azurirajVisokoUciliste(visokoUciliste: VisokoUciliste, sifra: string): Observable<VisokoUciliste> {
-    return this.http.post<VisokoUciliste>(`${this.spremiVisokoUcilisteUrl}/${sifra}`, visokoUciliste, this.httpOptions)
+    return this.http.put<VisokoUciliste>(`${this.azurirajVisokoUcilisteUrl}/${sifra}`, visokoUciliste, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 }

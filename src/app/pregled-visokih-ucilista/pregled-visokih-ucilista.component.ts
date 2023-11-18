@@ -101,4 +101,14 @@ export class PregledVisokihUcilistaComponent implements OnInit {
       });
 
   }
+
+  dohvatiVisokoUciliste(sifra: string): void {
+    this.pregledVisokihUcilistaService.dohvatiVisokoUciliste(sifra)
+      .subscribe(visokoUciliste => {
+        this.visokoUciliste = visokoUciliste;
+        console.log(visokoUciliste);
+      }, error => {
+        console.log(error);
+      });
+  }
 }
