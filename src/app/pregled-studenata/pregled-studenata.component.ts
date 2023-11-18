@@ -12,9 +12,27 @@ import {KorisnikZahtjev} from "../common/korisnikZahtjev";
 export class PregledStudenataComponent implements OnInit {
 
   modalOtvoren = false;
+  modalBrisanjeOtvoren = false;
 
   studenti: Student[] = [];
   studentiPrikaz: Student[] = [];
+
+  sifraOpis: SifraOpis = {
+    sifra: '',
+    opis: ''
+  }
+
+  student: Student = {
+    ime: '',
+    prezime: '',
+    korisnickoIme: '',
+    jmbag: '',
+    semestar: 0,
+    adresa: '',
+    rola: '',
+    visokoUciliste: this.sifraOpis,
+    studij: this.sifraOpis
+  }
 
   visokaUcilista: SifraOpis[] = [];
   studiji: SifraOpis[] = [];
@@ -34,6 +52,16 @@ export class PregledStudenataComponent implements OnInit {
         this.studenti = studenti;
         this.studentiPrikaz = studenti;
         console.log(studenti);
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  dohvatiStudenta(korisnickoIme: string): void {
+    this.pregledStudenataService.dohvatiStudenta(korisnickoIme)
+      .subscribe(student => {
+        this.student = student;
+        console.log(student);
       }, error => {
         console.log(error);
       });
@@ -118,6 +146,15 @@ export class PregledStudenataComponent implements OnInit {
     }
 
     this.pregledStudenataService.spremiStudenta(student)
+      .subscribe(student => {
+        window.location.reload();
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  izbrisiStudenta(korisnickoIme: string): void {
+    this.pregledStudenataService.izbrisiStudenta(korisnickoIme)
       .subscribe(student => {
         window.location.reload();
       }, error => {

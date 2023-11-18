@@ -10,7 +10,8 @@
     </div>
     <div class="field mt-6 has-text-centered">
       <div class="control">
-        <input id="pretraga" class="input has-text-centered" style="width: 60%" type="text" (keydown)="pretrazi()" placeholder="Pretraga studenata">
+        <input id="pretraga" class="input has-text-centered" style="width: 60%" type="text" (keydown)="pretrazi()"
+               placeholder="Pretraga studenata">
       </div>
     </div>
     <div style="margin-bottom: 10vh">
@@ -37,10 +38,13 @@
           <td>{{student.jmbag}}</td>
           <td>{{student.visokoUciliste.opis}}</td>
           <td>
-            <button class="button is-warning">Uredi</button>
+            <button class="button is-warning" (click)="dohvatiStudenta(student.korisnickoIme)">Uredi</button>
           </td>
           <td>
-            <button class="button is-danger">Izbriši</button>
+            <button class="button is-danger"
+                    (click)="dohvatiStudenta(student.korisnickoIme); modalBrisanjeOtvoren = !modalBrisanjeOtvoren">
+              Izbriši
+            </button>
           </td>
         </tr>
         </tbody>
@@ -118,7 +122,8 @@
           <div class="select is-fullwidth">
             <select id="visokoUcilisteSelect" (change)="dohvatiStudije()" #visokoUcilisteSIf>
               <option value="">Molimo odaberite...</option>
-              <option *ngFor="let visokoUciliste of visokaUcilista" [value]="visokoUciliste.sifra">{{visokoUciliste.opis}}</option>
+              <option *ngFor="let visokoUciliste of visokaUcilista"
+                      [value]="visokoUciliste.sifra">{{visokoUciliste.opis}}</option>
             </select>
           </div>
         </div>
@@ -138,12 +143,40 @@
     <footer class="modal-card-foot">
       <div class="field is-grouped mt-5">
         <div class="control">
-          <button class="button is-info" (click)="spremiStudenta(ime.value,prezime.value,jmbag.value,semestar.value,adresa.value,lozinka.value, visokoUcilisteSIf.value, studijSif.value)">Dodaj</button>
+          <button class="button is-info"
+                  (click)="spremiStudenta(ime.value,prezime.value,jmbag.value,semestar.value,adresa.value,lozinka.value, visokoUcilisteSIf.value, studijSif.value)">
+            Dodaj
+          </button>
         </div>
         <div class="control">
           <button (click)="modalOtvoren = !modalOtvoren" class="button is-danger">Odustani</button>
         </div>
       </div>
+    </footer>
+  </div>
+</div>
+
+<div *ngIf="modalBrisanjeOtvoren" class="modal is-active">
+  <div class="modal-background" (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Potvrdite brisanje studenta</p>
+      <button class="delete" aria-label="close" (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren"></button>
+    </header>
+    <section class="modal-card-body">
+      <h1><b>Jeste li sigurni da želite izbrisati studenta?</b></h1>
+      <hr>
+      <div class="has-text-centered">
+        <p><b>Ime i prezime:</b></p>
+        <p>{{student.ime}} {{student.prezime}}</p>
+        <p class="mt-5"><b>JMBAG:</b></p>
+        <p>{{student.jmbag}}</p>
+      </div>
+      <hr>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-danger" (click)="izbrisiStudenta(student.korisnickoIme)">Izbriši</button>
+      <button class="button" (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren">Odustani</button>
     </footer>
   </div>
 </div>

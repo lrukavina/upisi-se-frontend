@@ -11,6 +11,8 @@ import {KorisnikZahtjev} from "../common/korisnikZahtjev";
 export class PregledStudenataService {
 
   private studentiUrl = 'http://localhost:8080/api/korisnik/dohvati/studenti';
+  private studentUrl = 'http://localhost:8080/api/korisnik/dohvati';
+  private izbrisiStudentaUrl = 'http://localhost:8080/api/korisnik/izbrisi';
   private visokaUcilistaUrl = 'http://localhost:8080/api/visoko-uciliste/dohvati/padajuci-izbornik';
   private studijiUrl = 'http://localhost:8080/api/studij/dohvati/padajuci-izbornik';
   private spremiStudentaUrl = 'http://localhost:8080/api/auth/registracija';
@@ -34,6 +36,11 @@ export class PregledStudenataService {
       .pipe(catchError(this.handleError));
   }
 
+  dohvatiStudenta(korisnickoIme: string): Observable<Student> {
+    return this.http.get<Student>(`${this.studentUrl}/${korisnickoIme}`, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
   dohvatiVisokaUcilista(): Observable<SifraOpis[]> {
     return this.http.get<SifraOpis[]>(`${this.visokaUcilistaUrl}`, this.httpOptions)
       .pipe(catchError(this.handleError));
@@ -46,6 +53,11 @@ export class PregledStudenataService {
 
   spremiStudenta(student: KorisnikZahtjev): Observable<KorisnikZahtjev[]> {
     return this.http.post<KorisnikZahtjev[]>(`${this.spremiStudentaUrl}`, student, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  izbrisiStudenta(korisnickoIme: string): Observable<any> {
+    return this.http.delete<any>(`${this.izbrisiStudentaUrl}/${korisnickoIme}`, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 }
