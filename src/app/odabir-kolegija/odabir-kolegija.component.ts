@@ -3,6 +3,10 @@ import {SifraOpis} from "../common/sifraOpis";
 import {Kolegij} from "../common/kolegij";
 import {Upis} from "../pregled-upisa/upis";
 import {PregledUpisaService} from "../pregled-upisa/pregled-upisa.service";
+import {OdabirKolegijaService} from "./odabir-kolegija.service";
+import {KolegijPregled} from "../common/kolegijPregled";
+import {KolegijInfo} from "../common/kolegijInfo";
+import {Nastavnik} from "../common/nastavnik";
 
 @Component({
   selector: 'app-odabir-kolegija',
@@ -11,6 +15,7 @@ import {PregledUpisaService} from "../pregled-upisa/pregled-upisa.service";
 })
 export class OdabirKolegijaComponent {
   modalOtvoren = false;
+  aktivniTab = 'osnovneInformacije';
 
   sifraOpis: SifraOpis = {
     sifra: '',
@@ -40,8 +45,28 @@ export class OdabirKolegijaComponent {
     izborniKolegiji: this.kolegiji
   }
 
+  kolegijInfo: KolegijInfo = {
+    sifra: '',
+    informacije: '',
+    kolegij: this.sifraOpis
+  }
+
+  nastavnici: Nastavnik[] = [];
+
+  kolegijPregled: KolegijPregled = {
+    naziv: '',
+    ects: 0,
+    semestar: 0,
+    isvuSifra: '',
+    obavezan: true,
+    studij: this.sifraOpis,
+    kolegijInfo: this.kolegijInfo,
+    nastavnici: this.nastavnici
+  }
+
   constructor(
-    private pregledUpisaService: PregledUpisaService
+    private pregledUpisaService: PregledUpisaService,
+    private odabirKolegijaService: OdabirKolegijaService
   ) {
   }
 
@@ -60,6 +85,42 @@ export class OdabirKolegijaComponent {
       }, error => {
         console.log(error);
       });
+  }
+
+  dohvatiKolegijpregled(sifra: string): void {
+    this.odabirKolegijaService.dohvatiKolegijPregled(sifra).subscribe(kolegijPregled => {
+      if (kolegijPregled != null) {
+        this.kolegijPregled = kolegijPregled;
+      }
+      console.log(kolegijPregled);
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  promijeniTab(tabId: any): void {
+    this.odaberiTab(tabId);
+    this.aktivniTab = tabId;
+
+  }
+
+  odaberiTab(tabId: any): void {
+    let odabraniTab = document.getElementById(tabId);
+    let tabovi = document.getElementsByClassName('tab');
+    if (odabraniTab == null || tabovi == null) {
+      return;
+    }
+
+    let taboviArr = Array.from(tabovi);
+    taboviArr.forEach(tab => {
+      tab.classList.remove('is-active');
+    });
+
+    odabraniTab.classList.add('is-active');
+  }
+
+  defaultTab(): void {
+    this.aktivniTab = 'osnovneInformacije';
   }
 
 }
