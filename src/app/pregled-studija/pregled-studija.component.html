@@ -32,109 +32,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>Stručni prijediplomski studij Računarstvo</td>
-          <td>Programsko inženjerstvo</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Stručni prijediplomski studij Računarstvo</td>
-          <td>Inženjerstvo računalnih sustava i mreža</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Stručni prijediplomski studij Računarstvo</td>
-          <td>Inženjerstvo računalnih sustava i mreža</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Stručni prijediplomski studij Graditeljstvo</td>
-          <td>Građevinsko poduzetništvo</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Stručni prijediplomski studij Graditeljstvo</td>
-          <td>Niskogradnja</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Stručni prijediplomski studij Mehatronika</td>
-          <td>Mehatronika</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Stručni prijediplomski studij Strojarstvo</td>
-          <td>Strojarstvo</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Stručni prijediplomski studij Informatika</td>
-          <td>Organizacija i informatizacija ureda</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Stručni prijediplomski studij Informatika</td>
-          <td>Elektroničko poslovanje</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Stručni prijediplomski studij Informatika</td>
-          <td>Informatički dizajn</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
+        <tr *ngFor="let studij of studijiPrikaz">
+          <td>{{studij.nazivStudija}}</td>
+          <td>{{studij.nazivSmjera}}</td>
+          <td>{{studij.visokoUciliste.opis}}</td>
           <td>
             <button class="button is-warning">Uredi</button>
           </td>
@@ -146,19 +47,6 @@
       </table>
     </div>
     <hr>
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-      <a class="pagination-previous">Prethodna stranica</a>
-      <a class="pagination-next">Sljedeća stranica</a>
-      <ul class="pagination-list">
-        <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
-        <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
-        <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
-      </ul>
-    </nav>
   </div>
 </div>
 
