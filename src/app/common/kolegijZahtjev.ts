@@ -1,16 +1,13 @@
 import {KolegijInfo} from "./kolegijInfo";
 import {Nastavnik} from "./nastavnik";
-import {SifraOpis} from "./sifraOpis";
 
-export interface KolegijPregled {
-  sifra: string,
+export interface KolegijZahtjev {
   naziv: string,
   ects: number,
   semestar: number,
   isvuSifra: string,
   obavezan: boolean,
-  studij: SifraOpis,
-  visokoUciliste: SifraOpis,
+  studijSifra: string,
   kolegijInfo: KolegijInfo,
   nastavnici: Nastavnik[]
 }

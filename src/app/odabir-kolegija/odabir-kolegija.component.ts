@@ -56,12 +56,14 @@ export class OdabirKolegijaComponent {
   nastavnici: Nastavnik[] = [];
 
   kolegijPregled: KolegijPregled = {
+    sifra: '',
     naziv: '',
     ects: 0,
     semestar: 0,
     isvuSifra: '',
     obavezan: true,
     studij: this.sifraOpis,
+    visokoUciliste: this.sifraOpis,
     kolegijInfo: this.kolegijInfo,
     nastavnici: this.nastavnici
   }

@@ -10,7 +10,8 @@
     </div>
     <div class="field mt-6 has-text-centered">
       <div class="control">
-        <input class="input has-text-centered" style="width: 60%" type="email" placeholder="Pretraga kolegija">
+        <input id="pretraga" class="input has-text-centered" style="width: 60%" type="text"
+               placeholder="Pretraga kolegija" (keydown)="pretrazi()">
       </div>
     </div>
     <div style="margin-bottom: 10vh">
@@ -34,153 +35,23 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>NOSQL i napredna big data analitika</td>
-          <td>3</td>
-          <td>6</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>Specijalistički izvanredni studij informatike (RS)</td>
+        <tr *ngFor="let kolegij of kolegijiPrikaz">
+          <td>{{kolegij.naziv}}</td>
+          <td>{{kolegij.semestar}}</td>
+          <td>{{kolegij.ects}}</td>
+          <td>{{kolegij.visokoUciliste.opis}}</td>
+          <td>{{kolegij.studij.opis}}</td>
           <td>
-            <button class="button is-warning">Uredi</button>
+            <button class="button is-warning" (click)="dohvatiKolegij(kolegij.sifra); dohvatiStudijeEdit(kolegij.visokoUciliste.sifra); modalEditOtvoren = !modalEditOtvoren">Uredi</button>
           </td>
           <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Alati i postupci umjetne inteligencije</td>
-          <td>3</td>
-          <td>6</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>Specijalistički izvanredni studij informatike (RS)</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Reinžinjering poslovnih procesa</td>
-          <td>3</td>
-          <td>6</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>Specijalistički izvanredni studij informatike (RS)</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Projektiranje inovacija</td>
-          <td>3</td>
-          <td>6</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>Specijalistički izvanredni studij informatike (RS)</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Napredne tehnike projektiranja web servisa</td>
-          <td>3</td>
-          <td>6</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>Specijalistički izvanredni studij informatike (RS)</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Razvoj mobilnih aplikacija</td>
-          <td>3</td>
-          <td>6</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>Specijalistički izvanredni studij informatike (RS)</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Modeliranje i administracija baza podataka</td>
-          <td>3</td>
-          <td>6</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>Specijalistički izvanredni studij informatike (RS)</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Digitalna ekonomija</td>
-          <td>1</td>
-          <td>5</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>Specijalistički izvanredni studij informatike (RS)</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Diskretna matematika</td>
-          <td>2</td>
-          <td>6</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>Specijalistički izvanredni studij informatike (RS)</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Metodologija stručnog i istraživačkog rada</td>
-          <td>4</td>
-          <td>6</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>Specijalistički izvanredni studij informatike (RS)</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
+            <button class="button is-danger" (click)="dohvatiKolegij(kolegij.sifra); modalBrisanjeOtvoren = !modalBrisanjeOtvoren;">Izbriši</button>
           </td>
         </tr>
         </tbody>
       </table>
     </div>
     <hr>
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-      <a class="pagination-previous">Prethodna stranica</a>
-      <a class="pagination-next">Sljedeća stranica</a>
-      <ul class="pagination-list">
-        <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
-        <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
-        <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
-      </ul>
-    </nav>
   </div>
 </div>
 
@@ -195,7 +66,7 @@
       <div class="field">
         <label class="label has-text-weight-medium has-text-centered">Naziv kolegija</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Matematika I">
+          <input class="input" type="text" placeholder="Matematika I" #naziv>
         </div>
       </div>
       <div class="columns">
@@ -203,7 +74,7 @@
           <div class="field">
             <label class="label has-text-weight-medium has-text-centered">Semestar</label>
             <div class="control">
-              <input class="input" type="text" placeholder="1">
+              <input class="input" type="text" placeholder="1" #semestar>
             </div>
           </div>
         </div>
@@ -211,45 +82,252 @@
           <div class="field">
             <label class="label has-text-weight-medium has-text-centered">ECTS bodovi</label>
             <div class="control">
-              <input class="input" type="text" placeholder="6">
+              <input class="input" type="text" placeholder="6" #ects>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">ISVU šifra</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="229516" #isvuSif>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">Obavezan</label>
+            <div class="control">
+              <div class="select is-fullwidth">
+                <select #obavezan>
+                  <option value="" hidden>Molimo Odaberite..</option>
+                  <option value="true">DA</option>
+                  <option value="">NE</option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Informacije</label>
+        <div class="control">
+          <textarea class="textarea" placeholder="Informacije o kolegiju" #informacije></textarea>
+        </div>
+      </div>
+      <label class="label has-text-weight-medium has-text-centered">Nastavnici</label>
+      <div class="field" id="nastavnici">
+        <div class="columns">
+          <div class="column">
+            <div class="field">
+              <label class="label has-text-weight-medium has-text-centered">Titula</label>
+              <div class="control">
+                <input class="input titula" type="text" placeholder="dr.sc.">
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label class="label has-text-weight-medium has-text-centered">Ime i prezime</label>
+              <div class="control">
+                <input class="input imePrezime" type="text" placeholder="Ivo Ivić">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <button class="button is-info" (click)="dodajNastavnika()">Dodaj nastavnika</button>
+      </div>
+      <div class="field">
         <label class="label has-text-weight-medium has-text-centered">Visoko učilište</label>
         <div class="control">
           <div class="select is-fullwidth">
-            <select>
-              <option>Tehničko veleučilište u Zagrebu</option>
-              <option>Fakultet strojarstva i brodogradnje</option>
-              <option>Ekonomski fakultet u Zagrebu</option>
-              <option>Veleučilište Velika gorica</option>
-              <option>Veterinarski fakultet u Zagrebu</option>
-              <option>Fakultet elektrotehnike i računarstva</option>
+            <select id="visokoUcilisteSelect" (change)="dohvatiStudije()">
+              <option value="" hidden>Molimo odaberite...</option>
+              <option *ngFor="let visokoUciliste of visokaUcilista"
+                      [value]="visokoUciliste.sifra">{{visokoUciliste.opis}}</option>
             </select>
           </div>
         </div>
       </div>
       <div class="field">
-        <label class="label has-text-weight-medium has-text-centered">Studij i smjer</label>
+        <label class="label has-text-weight-medium has-text-centered">Studij</label>
         <div class="control">
           <div class="select is-fullwidth">
-            <select>
-              <option>Specijalistički izvanredni studij informatike (RS) - Programsko inženjerstvo računarskih i ugradbenih sustava</option>
-              <option>Specijalistički izvanredni studij digitalne ekonomije (RS) - Digitalna ekonomija i dizajn</option>
+            <select id="studijSelect" disabled #studijSif>
+              <option value="" hidden>Molimo odaberite...</option>
+              <option *ngFor="let studij of studiji" [value]="studij.sifra">{{studij.opis}}</option>
             </select>
           </div>
         </div>
       </div>
       <div class="field is-grouped mt-5">
         <div class="control">
-          <button class="button is-info">Dodaj</button>
+          <button class="button is-info"
+                  (click)="spremiKolegij(naziv.value,ects.value,semestar.value,isvuSif.value,obavezan.value,studijSif.value,informacije.value, false)">
+            Dodaj
+          </button>
         </div>
         <div class="control">
-          <button class="button is-danger">Odustani</button>
+          <button class="button is-danger" (click)="modalOtvoren = !modalOtvoren">Odustani</button>
         </div>
       </div>
     </section>
+  </div>
+</div>
+
+<div *ngIf="modalEditOtvoren" class="modal is-active">
+  <div class="modal-background" (click)="modalEditOtvoren = !modalEditOtvoren"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Uredi kolegij</p>
+      <button class="delete" aria-label="close" (click)="modalEditOtvoren = !modalEditOtvoren"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Naziv kolegija</label>
+        <div class="control">
+          <input value="{{kolegij.naziv}}" class="input" type="text" placeholder="Matematika I" #naziv>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">Semestar</label>
+            <div class="control">
+              <input value="{{kolegij.semestar}}" class="input" type="text" placeholder="1" #semestar>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">ECTS bodovi</label>
+            <div class="control">
+              <input value="{{kolegij.ects}}" class="input" type="text" placeholder="6" #ects>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">ISVU šifra</label>
+            <div class="control">
+              <input value="{{kolegij.isvuSifra}}" class="input" type="text" placeholder="229516" #isvuSif>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">Obavezan</label>
+            <div class="control">
+              <div class="select is-fullwidth">
+                <select #obavezan>
+                  <option hidden>Molimo Odaberite..</option>
+                  <option [selected]="kolegij.obavezan === true"  value="true">DA</option>
+                  <option [selected]="kolegij.obavezan === false"  value="">NE</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Informacije</label>
+        <div class="control">
+          <textarea class="textarea" [value]="kolegij.kolegijInfo.informacije" placeholder="Informacije o kolegiju" #informacije></textarea>
+        </div>
+      </div>
+      <label class="label has-text-weight-medium has-text-centered">Nastavnici</label>
+      <div *ngFor="let nastavnik of kolegij.nastavnici" class="field" id="nastavnici">
+        <div class="columns">
+          <div class="column">
+            <div class="field">
+              <label class="label has-text-weight-medium has-text-centered">Titula</label>
+              <div class="control">
+                <input id="{{nastavnik.sifra}}" value="{{nastavnik.titula}}" class="input titula" type="text" placeholder="dr.sc.">
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label class="label has-text-weight-medium has-text-centered">Ime i prezime</label>
+              <div class="control">
+                <input value="{{nastavnik.ime}} {{nastavnik.prezime}}" class="input imePrezime" type="text" placeholder="Ivo Ivić">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <button class="button is-info" (click)="dodajNastavnika()">Dodaj nastavnika</button>
+      </div>
+      <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Visoko učilište</label>
+        <div class="control">
+          <div class="select is-fullwidth">
+            <select id="visokoUcilisteSelect" (change)="dohvatiStudije()">
+              <option value="" hidden>Molimo odaberite...</option>
+              <option *ngFor="let visokoUciliste of visokaUcilista"
+                      [value]="visokoUciliste.sifra"
+                      [selected]="visokoUciliste.sifra === kolegij.visokoUciliste.sifra">{{visokoUciliste.opis}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Studij</label>
+        <div class="control">
+          <div class="select is-fullwidth">
+            <select id="studijSelect" #studijSif>
+              <option value="" hidden>Molimo odaberite...</option>
+              <option *ngFor="let studij of studiji" [value]="studij.sifra"
+                      [selected]="studij.sifra === kolegij.studij.sifra">{{studij.opis}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="field is-grouped mt-5">
+        <div class="control">
+          <button class="button is-info"
+                  (click)="spremiKolegij(naziv.value,ects.value,semestar.value,isvuSif.value,obavezan.value,studijSif.value,informacije.value, true)">
+            Dodaj
+          </button>
+        </div>
+        <div class="control">
+          <button class="button is-danger" (click)="modalEditOtvoren = !modalEditOtvoren">Odustani</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div *ngIf="modalBrisanjeOtvoren" class="modal is-active">
+  <div class="modal-background" (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Potvrdite brisanje kolegija</p>
+      <button class="delete" aria-label="close" (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren"></button>
+    </header>
+    <section class="modal-card-body">
+      <h1><b>Jeste li sigurni da želite izbrisati kolegij?</b></h1>
+      <hr>
+      <div class="has-text-centered">
+        <p><b>Naziv:</b></p>
+        <p>{{kolegij.naziv}}</p>
+        <p class="mt-5"><b>Visoko učilište:</b></p>
+        <p>{{kolegij.visokoUciliste.opis}}</p>
+        <p class="mt-5"><b>Studij:</b></p>
+        <p>{{kolegij.studij.opis}}</p>
+      </div>
+      <hr>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-danger" (click)="izbrisiKolegij()">Izbriši</button>
+      <button class="button" (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren">Odustani</button>
+    </footer>
   </div>
 </div>
