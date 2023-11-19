@@ -25,7 +25,11 @@ export class LoginComponent {
       sessionStorage.setItem('korisnickoIme', korisnik.korisnickoIme);
       sessionStorage.setItem('rola', korisnik.rola);
       sessionStorage.setItem('refresh', '1');
-      this.route.navigate(['/pregled-upisa']);
+      if(korisnik.rola === 'STUDENT') {
+        this.route.navigate(['/pregled-upisa']);
+      } else {
+        this.route.navigate(['/admin-izbornik']);
+      }
     }, error => {
       console.log(error);
     });
