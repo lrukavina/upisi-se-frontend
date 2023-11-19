@@ -46,10 +46,15 @@
             <button class="button is-info" (click)="modalPregledOtvoren = !modalPregledOtvoren">Pregled</button>
           </td>
           <td>
-            <button class="button is-warning" (click)="modalEditOtvoren = !modalEditOtvoren; dohvatiUpis(upis.sifra)">Uredi</button>
+            <button class="button is-warning"
+                    (click)="modalEditOtvoren = !modalEditOtvoren; dohvatiUpis(upis.sifra); dohvatiStudijeEdit(upis.visokoUciliste.sifra); dohvatiKolegijeEdit(upis.studij.sifra)">
+              Uredi
+            </button>
           </td>
           <td>
-            <button class="button is-danger" (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren; dohvatiUpis(upis.sifra)">Izbriši</button>
+            <button class="button is-danger"
+                    (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren; dohvatiUpis(upis.sifra)">Izbriši
+            </button>
           </td>
         </tr>
         </tbody>
@@ -253,6 +258,118 @@
         </div>
         <div class="control">
           <button class="button is-danger" (click)="modalOtvoren = !modalOtvoren">Odustani</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="modalEditOtvoren" class="modal is-active">
+  <div class="modal-background" (click)="modalEditOtvoren = !modalEditOtvoren"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Dodaj upisnu prijavu</p>
+      <button class="delete" aria-label="close" (click)="modalEditOtvoren = !modalEditOtvoren"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Visoko učilište</label>
+        <div class="control">
+          <div class="select is-fullwidth">
+            <select id="visokoUcilisteSelect" (change)="dohvatiStudije()" #visokoUcilisteSIf>
+              <option value="">Molimo odaberite...</option>
+              <option *ngFor="let visokoUciliste of visokaUcilista"
+                      [value]="visokoUciliste.sifra"
+                      [selected]="visokoUciliste.sifra === upis.visokoUciliste.sifra">{{visokoUciliste.opis}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Studij</label>
+        <div class="control">
+          <div class="select is-fullwidth">
+            <select id="studijSelect" #studijSif>
+              <option>Molimo odaberite...</option>
+              <option *ngFor="let studij of studiji" [value]="studij.sifra"
+                      [selected]="studij.sifra === upis.studij.sifra">{{studij.opis}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">Semestar</label>
+            <div class="control">
+              <input value="{{upis.semestar}}" class="input" type="text" placeholder="1" #semestar>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">Minimalni broj ECTS-a</label>
+            <div class="control">
+              <input value="{{upis.minBrojEctsa}}" class="input" type="text" placeholder="15" #minEcts>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">Maksimalni broj ECTS-a</label>
+            <div class="control">
+              <input value="{{upis.maxBrojEctsa}}" class="input" type="text" placeholder="30" #maxEcts>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Obavezni kolegiji</label>
+        <div class="control">
+          <div class="select is-multiple is-fullwidth">
+            <select id="obavezniKolegijiSelect" multiple>
+              <option *ngFor="let obavezniKolegij of kolegijIzbornik.obavezniKolegiji"
+                      [selected]="provjeriJeLiOdabran(obavezniKolegij, true)"
+                      [value]="obavezniKolegij.sifra">{{obavezniKolegij.opis}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Izborni kolegiji</label>
+        <div class="control">
+          <div class="select is-multiple is-fullwidth">
+            <select id="izborniKolegijiSelect" multiple>
+              <option *ngFor="let izborniKolegij of kolegijIzbornik.izborniKolegiji"
+                      [selected]="provjeriJeLiOdabran(izborniKolegij, false)"
+                      [value]="izborniKolegij.sifra">{{izborniKolegij.opis}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Datum trajanja od</label>
+        <div class="control">
+          <input value="{{upis.datumOd}}" class="input" type="date" placeholder="" #datumOd>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Datum trajanja do</label>
+        <div class="control">
+          <input value="{{upis.datumDo}}" class="input" type="date" placeholder="" #datumDo>
+        </div>
+      </div>
+    </section>
+    <div class="modal-card-foot">
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-info"
+                  (click)="spremiUpisnuPrijavu(studijSif.value,semestar.value,minEcts.value,maxEcts.value,datumOd.value,datumDo.value, false)">
+            Ažuriraj
+          </button>
+        </div>
+        <div class="control">
+          <button class="button is-danger" (click)="modalEditOtvoren = !modalEditOtvoren">Odustani</button>
         </div>
       </div>
     </div>

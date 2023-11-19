@@ -50,6 +50,8 @@ export class PregledUpisnihPrijavaComponent {
     maxBrojEctsa: 0,
     datumVrijemeOd: '',
     datumVrijemeDo: '',
+    datumOd: '',
+    datumDo: '',
     status: '',
     obavezniKolegiji: this.kolegiji,
     izborniKolegiji: this.kolegiji
@@ -135,6 +137,17 @@ export class PregledUpisnihPrijavaComponent {
       });
   }
 
+  dohvatiStudijeEdit(visokoUcilisteSifra: string): void {
+    this.pregledStudenataService.dohvatiStudije(visokoUcilisteSifra)
+      .subscribe(studiji => {
+        this.studiji = studiji;
+        this.studiji = studiji;
+        console.log(studiji);
+      }, error => {
+        console.log(error);
+      });
+  }
+
   dohvatiKolegije(): void {
     let studijSelect = document.getElementById('studijSelect') as HTMLInputElement;
     let studijSifra = studijSelect.value;
@@ -151,6 +164,16 @@ export class PregledUpisnihPrijavaComponent {
     obavezniKolegijiSelect.disabled = false;
     izborniKolegijiSelect.disabled = false;
 
+    this.pregledUpisnihPrijavaService.dohvatiKolegijeZaStudij(studijSifra)
+      .subscribe(kolegijIzbornik => {
+        this.kolegijIzbornik = kolegijIzbornik
+        console.log(kolegijIzbornik);
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  dohvatiKolegijeEdit(studijSifra: string): void {
     this.pregledUpisnihPrijavaService.dohvatiKolegijeZaStudij(studijSifra)
       .subscribe(kolegijIzbornik => {
         this.kolegijIzbornik = kolegijIzbornik
@@ -209,12 +232,12 @@ export class PregledUpisnihPrijavaComponent {
         });
     }
 
-    /*this.pregledStudenataService.azurirajStudenta(student, this.student.korisnickoIme)
+    this.pregledUpisnihPrijavaService.azurirajUpisnuPrijavu(upisZahtjev, this.upis.sifra)
       .subscribe(upisnaPrijava => {
         window.location.reload();
       }, error => {
         console.log(error);
-      });*/
+      });
   }
 
   izbrisiUpisnuPrijavu(sifra: string): void {
@@ -225,4 +248,24 @@ export class PregledUpisnihPrijavaComponent {
         console.log(error);
       });
   }
+
+  provjeriJeLiOdabran(kolegij: SifraOpis, obavezan: boolean): boolean {
+    let odabran = false;
+
+    if(obavezan) {
+      this.upis.obavezniKolegiji.forEach(obavezniKolegij => {
+        if(kolegij.sifra === obavezniKolegij.sifra) {
+          odabran = true;
+        }
+      });
+      return odabran;
+    } else {
+      this.upis.izborniKolegiji.forEach(izborniKolegij => {
+        if(kolegij.sifra === izborniKolegij.sifra) {
+          odabran = true;
+        }
+      });
+      return odabran;
+    }
+}
 }

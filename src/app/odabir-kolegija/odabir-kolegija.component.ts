@@ -42,6 +42,8 @@ export class OdabirKolegijaComponent {
     maxBrojEctsa: 0,
     datumVrijemeOd: '',
     datumVrijemeDo: '',
+    datumOd: '',
+    datumDo: '',
     status: '',
     obavezniKolegiji: this.kolegiji,
     izborniKolegiji: this.kolegiji
