@@ -10,6 +10,7 @@ import {UpisZahtjev} from "../common/upisZahtjev";
 export class PregledUpisnihPrijavaService {
   private dohvatiKolegijeIzbornikUrl = 'http://localhost:8080/api/kolegij/dohvati/izbornik/studij';
   private spremiUpisnuPrijavuUrl = 'http://localhost:8080/api/upis/spremi';
+  private izbrisiUpisnuPrijavuUrl = 'http://localhost:8080/api/upis/izbrisi';
 
 
   constructor(private http: HttpClient) {
@@ -33,6 +34,11 @@ export class PregledUpisnihPrijavaService {
 
   spremiUpisnuPrijavu(upisnaPrijava: UpisZahtjev): Observable<UpisZahtjev> {
     return this.http.post<UpisZahtjev>(`${this.spremiUpisnuPrijavuUrl}`, upisnaPrijava, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  izbrisiUpisnuPrijavu(sifra: string): Observable<any> {
+    return this.http.delete<any>(`${this.izbrisiUpisnuPrijavuUrl}/${sifra}`, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 

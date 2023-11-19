@@ -46,10 +46,10 @@
             <button class="button is-info" (click)="modalPregledOtvoren = !modalPregledOtvoren">Pregled</button>
           </td>
           <td>
-            <button class="button is-warning">Uredi</button>
+            <button class="button is-warning" (click)="modalEditOtvoren = !modalEditOtvoren; dohvatiUpis(upis.sifra)">Uredi</button>
           </td>
           <td>
-            <button class="button is-danger">Izbriši</button>
+            <button class="button is-danger" (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren; dohvatiUpis(upis.sifra)">Izbriši</button>
           </td>
         </tr>
         </tbody>
@@ -258,3 +258,31 @@
     </div>
   </div>
 </div>
+
+
+<div *ngIf="modalBrisanjeOtvoren" class="modal is-active">
+  <div class="modal-background" (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Potvrdite brisanje upisne prijave</p>
+      <button class="delete" aria-label="close" (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren"></button>
+    </header>
+    <section class="modal-card-body">
+      <h1><b>Jeste li sigurni da želite izbrisati upisnu prijavu?</b></h1>
+      <hr>
+      <div class="has-text-centered">
+        <p><b>Naziv studija</b></p>
+        <p>{{upis.studij.opis}}</p>
+        <p class="mt-5"><b>Trajanje:</b></p>
+        <p class="mt-2">od {{upis.datumVrijemeOd}}</p>
+        <p class="mt-2">do {{upis.datumVrijemeDo}}</p>
+      </div>
+      <hr>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-danger" (click)="izbrisiUpisnuPrijavu(upis.sifra)">Izbriši</button>
+      <button class="button" (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren">Odustani</button>
+    </footer>
+  </div>
+</div>
+

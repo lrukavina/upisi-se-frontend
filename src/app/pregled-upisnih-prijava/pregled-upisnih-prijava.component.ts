@@ -216,4 +216,13 @@ export class PregledUpisnihPrijavaComponent {
         console.log(error);
       });*/
   }
+
+  izbrisiUpisnuPrijavu(sifra: string): void {
+    this.pregledUpisnihPrijavaService.izbrisiUpisnuPrijavu(sifra)
+      .subscribe(upisnaPrijava => {
+        window.location.reload();
+      }, error => {
+        console.log(error);
+      });
+  }
 }
