@@ -21,6 +21,20 @@ export class PregledStudijaComponent {
 
   visokaUcilista: SifraOpis[] = [];
 
+  sifraOpis: SifraOpis = {
+    sifra: '',
+    opis: ''
+  }
+
+  studij: StudijPregled = {
+    sifra: '',
+    nazivStudija: '',
+    nazivSmjera: '',
+    ectsCijena: 0,
+    ectsCijenaFormatirana: '',
+    visokoUciliste: this.sifraOpis
+  }
+
   constructor(private pregledStudijaService: PregledStudijaService, private pregledStudenataService: PregledStudenataService) {
   }
 
@@ -35,6 +49,16 @@ export class PregledStudijaComponent {
         this.studiji = studiji;
         this.studijiPrikaz = studiji;
         console.log(studiji);
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  dohvatiStudij(sifra: string): void {
+    this.pregledStudijaService.dohvatiStudij(sifra)
+      .subscribe(studij => {
+        this.studij = studij;
+        console.log(studij);
       }, error => {
         console.log(error);
       });
@@ -98,6 +122,15 @@ export class PregledStudijaComponent {
         console.log(error);
       });*/
 
+  }
+
+  izbrisiStudij(): void {
+    this.pregledStudijaService.izbrisiStudij(this.studij.sifra)
+      .subscribe(studij => {
+        window.location.reload();
+      }, error => {
+        console.log(error);
+      });
   }
 
 
