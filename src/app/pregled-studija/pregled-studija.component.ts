@@ -35,4 +35,18 @@ export class PregledStudijaComponent {
       });
   }
 
+  pretrazi(): void {
+    let inputPolje = document.getElementById('pretraga') as HTMLInputElement;
+    let str = inputPolje.value;
+
+    this.studijiPrikaz = this.studiji;
+
+    this.studijiPrikaz = this.studiji.filter(studij =>
+      studij.nazivStudija.toLowerCase().includes(str.toLowerCase()) ||
+      studij.nazivSmjera.toString().toLowerCase().includes(str.toLowerCase()) ||
+      studij.visokoUciliste.opis.toString().toLowerCase().includes(str.toLowerCase())
+    );
+  }
+
+
 }
