@@ -38,7 +38,7 @@
           <td>{{studij.nazivSmjera}}</td>
           <td>{{studij.visokoUciliste.opis}}</td>
           <td>
-            <button class="button is-warning" (click)="dohvatiStudij(studij.sifra)">Uredi</button>
+            <button class="button is-warning" (click)="dohvatiStudij(studij.sifra); modalEditOtvoren = !modalEditOtvoren">Uredi</button>
           </td>
           <td>
             <button class="button is-danger"
@@ -61,32 +61,24 @@
       <button class="delete" aria-label="close" (click)="modalOtvoren = !modalOtvoren"></button>
     </header>
     <section class="modal-card-body">
-      <div class="columns">
-        <div class="column">
-          <div class="field">
-            <label class="label has-text-weight-medium has-text-centered">Naziv studija</label>
-            <div class="control">
-              <input class="input" type="text" placeholder="Specijalistički studij" #nazivStudija>
-            </div>
+        <div class="field">
+          <label class="label has-text-weight-medium has-text-centered">Naziv studija</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="Specijalistički studij" #nazivStudija>
           </div>
         </div>
-        <div class="column">
-          <div class="field">
-            <label class="label has-text-weight-medium has-text-centered">Naziv smjera</label>
-            <div class="control">
-              <input class="input" type="text" placeholder="Programsko inženjerstvo" #nazivSmjera>
-            </div>
+        <div class="field">
+          <label class="label has-text-weight-medium has-text-centered">Naziv smjera</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="Programsko inženjerstvo" #nazivSmjera>
           </div>
         </div>
-        <div class="column">
-          <div class="field">
-            <label class="label has-text-weight-medium has-text-centered">Cijena po ECTS-u</label>
-            <div class="control">
-              <input class="input" type="text" placeholder="Programsko inženjerstvo" #cijenaEcts>
-            </div>
+        <div class="field">
+          <label class="label has-text-weight-medium has-text-centered">Cijena po ECTS-u</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="33" #cijenaEcts>
           </div>
         </div>
-      </div>
       <div class="field">
         <label class="label has-text-weight-medium has-text-centered">Visoko učilište</label>
         <div class="control">
@@ -114,6 +106,60 @@
   </div>
 </div>
 
+<div *ngIf="modalEditOtvoren" class="modal is-active">
+  <div class="modal-background" (click)="modalEditOtvoren = !modalEditOtvoren"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Uredi studij</p>
+      <button class="delete" aria-label="close" (click)="modalEditOtvoren = !modalEditOtvoren"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Naziv studija</label>
+        <div class="control">
+          <input value="{{studij.nazivStudija}}" class="input" type="text" placeholder="Specijalistički studij" #nazivStudija>
+        </div>
+      </div>
+        <div class="field">
+          <label class="label has-text-weight-medium has-text-centered">Naziv smjera</label>
+          <div class="control">
+            <input value="{{studij.nazivSmjera}}" class="input" type="text" placeholder="Programsko inženjerstvo" #nazivSmjera>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label has-text-weight-medium has-text-centered">Cijena po ECTS-u</label>
+          <div class="control">
+            <input value="{{studij.ectsCijena}}" class="input" type="text" placeholder="33" #cijenaEcts>
+          </div>
+        </div>
+      <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Visoko učilište</label>
+        <div class="control">
+          <div class="select is-fullwidth">
+            <select #visokoUcilisteSifra>
+              <option hidden>Molimo odaberite...</option>
+              <option *ngFor="let visokoUciliste of visokaUcilista"
+                      [value]="visokoUciliste.sifra"
+                      [selected]="visokoUciliste.sifra === studij.visokoUciliste.sifra">{{visokoUciliste.opis}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="field is-grouped mt-5">
+        <div class="control">
+          <button class="button is-info"
+                  (click)="spremiStudij(nazivStudija.value, nazivSmjera.value, cijenaEcts.value, visokoUcilisteSifra.value, true)">
+            Dodaj
+          </button>
+        </div>
+        <div class="control">
+          <button class="button is-danger" (click)="modalEditOtvoren = !modalEditOtvoren">Odustani</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
 <div *ngIf="modalBrisanjeOtvoren" class="modal is-active">
   <div class="modal-background" (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren"></div>
   <div class="modal-card">
@@ -122,10 +168,10 @@
       <button class="delete" aria-label="close" (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren"></button>
     </header>
     <section class="modal-card-body">
-      <h1><b>Jeste li sigurni da želite izbrisati studija?</b></h1>
+      <h1><b>Jeste li sigurni da želite izbrisati studij?</b></h1>
       <hr>
       <div class="has-text-centered">
-        <p><b>Naziv:</b></p>
+        <p><b>Naziv studija (naziv smjera):</b></p>
         <p>{{studij.nazivStudija}} ({{studij.nazivSmjera}})</p>
         <p class="mt-5"><b>Visoko učilište:</b></p>
         <p>{{studij.visokoUciliste.opis}}</p>

@@ -107,7 +107,7 @@ export class PregledStudijaComponent {
 
     if (!isAzuriranje) {
       this.pregledStudijaService.spremiStudij(studijZahtjev)
-        .subscribe(kolegij => {
+        .subscribe(studij => {
           window.location.reload();
           return;
         }, error => {
@@ -115,12 +115,12 @@ export class PregledStudijaComponent {
         });
     }
 
-    /*this.pregledStudijaService.azurirajKolegij(kolegij, this.kolegij.sifra)
-      .subscribe(kolegij => {
+    this.pregledStudijaService.azurirajStudij(studijZahtjev, this.studij.sifra)
+      .subscribe(studij => {
         window.location.reload();
       }, error => {
         console.log(error);
-      });*/
+      });
 
   }
 

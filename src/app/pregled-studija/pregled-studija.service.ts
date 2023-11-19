@@ -11,7 +11,7 @@ export class PregledStudijaService {
   private dohvatiStudijeUrl = 'http://localhost:8080/api/studij/dohvati/sve';
   private dohvatiStudijUrl = 'http://localhost:8080/api/studij/dohvati';
   private spremiStudijUrl = 'http://localhost:8080/api/studij/spremi';
-  private azurirajStudijUrl = 'http://localhost:8080/api/kolegij/azuriraj';
+  private azurirajStudijUrl = 'http://localhost:8080/api/studij/azuriraj';
   private izbrisiStudijUrl = 'http://localhost:8080/api/studij/izbrisi';
 
   constructor(private http: HttpClient) {
@@ -40,6 +40,11 @@ export class PregledStudijaService {
 
   spremiStudij(studij: StudijZahtjev): Observable<StudijZahtjev> {
     return this.http.post<StudijZahtjev>(`${this.spremiStudijUrl}`, studij, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  azurirajStudij(studij: StudijZahtjev, sifra: string): Observable<StudijZahtjev> {
+    return this.http.put<StudijZahtjev>(`${this.azurirajStudijUrl}/${sifra}`, studij, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
