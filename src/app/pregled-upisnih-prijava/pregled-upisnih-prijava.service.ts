@@ -3,12 +3,14 @@ import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, throwError} from "rxjs";
 import {KolegijIzbornik} from "../common/kolegijIzbornik";
 import {UpisZahtjev} from "../common/upisZahtjev";
+import {UpisStatus} from "../common/upisStatus";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PregledUpisnihPrijavaService {
   private dohvatiKolegijeIzbornikUrl = 'http://localhost:8080/api/kolegij/dohvati/izbornik/studij';
+  private dohvatiUpisniListStatuseUrl = 'http://localhost:8080/api/upisni-list/dohvati/status/upis';
   private spremiUpisnuPrijavuUrl = 'http://localhost:8080/api/upis/spremi';
   private azurirajUpisnuPrijavuUrl = 'http://localhost:8080/api/upis/azuriraj';
   private izbrisiUpisnuPrijavuUrl = 'http://localhost:8080/api/upis/izbrisi';
@@ -30,6 +32,11 @@ export class PregledUpisnihPrijavaService {
 
   dohvatiKolegijeZaStudij(sifra: string): Observable<KolegijIzbornik> {
     return this.http.get<KolegijIzbornik>(`${this.dohvatiKolegijeIzbornikUrl}/${sifra}`, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  dohvatiUpisniListStatuse(sifra: string): Observable<UpisStatus[]> {
+    return this.http.get<UpisStatus[]>(`${this.dohvatiUpisniListStatuseUrl}/${sifra}`, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 

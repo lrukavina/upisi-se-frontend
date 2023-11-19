@@ -43,7 +43,10 @@
           <td class="has-text-warning-dark" *ngIf="upis.status === 'U_TIJEKU'"><b>U tijeku</b></td>
           <td class="has-text-danger-dark" *ngIf="upis.status === 'NIJE_ZAPOCET'"><b>Nije započet</b></td>
           <td>
-            <button class="button is-info" (click)="modalPregledOtvoren = !modalPregledOtvoren">Pregled</button>
+            <button class="button is-info"
+                    (click)="modalPregledOtvoren = !modalPregledOtvoren; dohvatiUpis(upis.sifra); dohvatiUpisniListStatuse(upis.sifra);">
+              Pregled
+            </button>
           </td>
           <td>
             <button class="button is-warning"
@@ -76,12 +79,11 @@
       <hr>
       <div class="has-text-centered mb-6">
         <p><b>Visoko učilište:</b></p>
-        <p class="mb-4">Tehničko veleučilište u Zagrebu</p>
+        <p class="mb-4">{{upis.visokoUciliste.opis}}</p>
         <p><b>Studij i smjer:</b></p>
-        <p class="mb-4">Specijalistički izvanredni studij informatike (RS) - Programsko inženjerstvo računarskih i
-          ugradbenih sustava</p>
+        <p class="mb-4">{{upis.studij.opis}}</p>
         <p><b>Semestar:</b></p>
-        <p>3</p>
+        <p>{{upis.semestar}}</p>
       </div>
       <div class="tablica-wrapper">
         <table class="table has-text-centered is-fullwidth">
@@ -93,55 +95,12 @@
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>Pero Perić</td>
-            <td>0246073114</td>
-            <td class="is-warning okvir">U tijeku</td>
-          </tr>
-          <tr>
-            <td>Ivo Ivić</td>
-            <td>0246073114</td>
-            <td class="is-warning okvir">U tijeku</td>
-          </tr>
-          <tr>
-            <td>Mara Marić</td>
-            <td>0246073114</td>
-            <td class="is-success okvir">Izvršen</td>
-          </tr>
-          <tr>
-            <td>Đuro Đurić</td>
-            <td>0246073114</td>
-            <td class="is-warning okvir">U tijeku</td>
-          </tr>
-          <tr>
-            <td>Maja Majić</td>
-            <td>0246073114</td>
-            <td class="is-warning okvir">U tijeku</td>
-          </tr>
-          <tr>
-            <td>Zoran Zorić</td>
-            <td>0246073114</td>
-            <td class="is-danger okvir">Nije započet</td>
-          </tr>
-          <tr>
-            <td>Gogo Gogić</td>
-            <td>0246073114</td>
-            <td class="is-warning okvir">U tijeku</td>
-          </tr>
-          <tr>
-            <td>Tara Tarić</td>
-            <td>0246073114</td>
-            <td class="is-danger okvir">Nije započet</td>
-          </tr>
-          <tr>
-            <td>Igor Igorić</td>
-            <td>0246073114</td>
-            <td class="is-success okvir">Izvršen</td>
-          </tr>
-          <tr>
-            <td>Mijo Mijić</td>
-            <td>0246073114</td>
-            <td class="is-success okvir">Izvršen</td>
+          <tr *ngFor="let upisniListStatus of upisniListStatusi">
+            <td>{{upisniListStatus.ime}} {{upisniListStatus.prezime}}</td>
+            <td>{{upisniListStatus.jmbag}}</td>
+            <td *ngIf="upisniListStatus.status === 'ZAVRSEN'" class="is-success okvir">Završen</td>
+            <td *ngIf="upisniListStatus.status === 'U_TIJEKU'" class="is-warning okvir">U tijeku</td>
+            <td *ngIf="upisniListStatus.status === 'NIJE_ZAPOCET'" class="is-danger okvir">Nije započet</td>
           </tr>
           </tbody>
         </table>
@@ -149,7 +108,7 @@
       <hr>
       <div class="field is-grouped mt-5">
         <div class="control">
-          <button class="button is-danger">Zatvori</button>
+          <button class="button is-danger" (click)="modalPregledOtvoren = !modalPregledOtvoren">Zatvori</button>
         </div>
       </div>
     </section>

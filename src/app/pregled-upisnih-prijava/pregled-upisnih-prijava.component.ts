@@ -8,6 +8,7 @@ import {PregledStudenataService} from "../pregled-studenata/pregled-studenata.se
 import {PregledUpisnihPrijavaService} from "./pregled-upisnih-prijava.service";
 import {KolegijIzbornik} from "../common/kolegijIzbornik";
 import {UpisZahtjev} from "../common/upisZahtjev";
+import {UpisStatus} from "../common/upisStatus";
 
 @Component({
   selector: 'app-pregled-upisnih-prijava',
@@ -23,6 +24,8 @@ export class PregledUpisnihPrijavaComponent {
 
   upisi: Upis[] = [];
   upisiPrikaz: Upis[] = [];
+
+  upisniListStatusi: UpisStatus[] = [];
 
   sifraOpis: SifraOpis = {
     sifra: '',
@@ -183,6 +186,16 @@ export class PregledUpisnihPrijavaComponent {
       });
   }
 
+  dohvatiUpisniListStatuse(upisSifra: string): void {
+    this.pregledUpisnihPrijavaService.dohvatiUpisniListStatuse(upisSifra)
+      .subscribe(upisniListStatusi => {
+        this.upisniListStatusi = upisniListStatusi
+        console.log(upisniListStatusi);
+      }, error => {
+        console.log(error);
+      });
+  }
+
   spremiUpisnuPrijavu(studijSifra: string,
                       semestar: string,
                       minBrojEctsa: string,
@@ -252,20 +265,20 @@ export class PregledUpisnihPrijavaComponent {
   provjeriJeLiOdabran(kolegij: SifraOpis, obavezan: boolean): boolean {
     let odabran = false;
 
-    if(obavezan) {
+    if (obavezan) {
       this.upis.obavezniKolegiji.forEach(obavezniKolegij => {
-        if(kolegij.sifra === obavezniKolegij.sifra) {
+        if (kolegij.sifra === obavezniKolegij.sifra) {
           odabran = true;
         }
       });
       return odabran;
     } else {
       this.upis.izborniKolegiji.forEach(izborniKolegij => {
-        if(kolegij.sifra === izborniKolegij.sifra) {
+        if (kolegij.sifra === izborniKolegij.sifra) {
           odabran = true;
         }
       });
       return odabran;
     }
-}
+  }
 }
