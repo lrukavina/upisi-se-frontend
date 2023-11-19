@@ -42,7 +42,7 @@
           <td>{{kolegij.visokoUciliste.opis}}</td>
           <td>{{kolegij.studij.opis}}</td>
           <td>
-            <button class="button is-warning" (click)="dohvatiKolegij(kolegij.sifra)">Uredi</button>
+            <button class="button is-warning" (click)="dohvatiKolegij(kolegij.sifra); dohvatiStudijeEdit(kolegij.visokoUciliste.sifra); modalEditOtvoren = !modalEditOtvoren">Uredi</button>
           </td>
           <td>
             <button class="button is-danger" (click)="dohvatiKolegij(kolegij.sifra); modalBrisanjeOtvoren = !modalBrisanjeOtvoren;">Izbriši</button>
@@ -172,7 +172,133 @@
           </button>
         </div>
         <div class="control">
-          <button class="button is-danger">Odustani</button>
+          <button class="button is-danger" (click)="modalOtvoren = !modalOtvoren">Odustani</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div *ngIf="modalEditOtvoren" class="modal is-active">
+  <div class="modal-background" (click)="modalEditOtvoren = !modalEditOtvoren"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Uredi kolegij</p>
+      <button class="delete" aria-label="close" (click)="modalEditOtvoren = !modalEditOtvoren"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Naziv kolegija</label>
+        <div class="control">
+          <input value="{{kolegij.naziv}}" class="input" type="text" placeholder="Matematika I" #naziv>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">Semestar</label>
+            <div class="control">
+              <input value="{{kolegij.semestar}}" class="input" type="text" placeholder="1" #semestar>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">ECTS bodovi</label>
+            <div class="control">
+              <input value="{{kolegij.ects}}" class="input" type="text" placeholder="6" #ects>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">ISVU šifra</label>
+            <div class="control">
+              <input value="{{kolegij.isvuSifra}}" class="input" type="text" placeholder="229516" #isvuSif>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">Obavezan</label>
+            <div class="control">
+              <div class="select is-fullwidth">
+                <select #obavezan>
+                  <option hidden>Molimo Odaberite..</option>
+                  <option [selected]="kolegij.obavezan === true"  value="true">DA</option>
+                  <option [selected]="kolegij.obavezan === false"  value="">NE</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Informacije</label>
+        <div class="control">
+          <textarea class="textarea" [value]="kolegij.kolegijInfo.informacije" placeholder="Informacije o kolegiju" #informacije></textarea>
+        </div>
+      </div>
+      <label class="label has-text-weight-medium has-text-centered">Nastavnici</label>
+      <div *ngFor="let nastavnik of kolegij.nastavnici" class="field" id="nastavnici">
+        <div class="columns">
+          <div class="column">
+            <div class="field">
+              <label class="label has-text-weight-medium has-text-centered">Titula</label>
+              <div class="control">
+                <input id="{{nastavnik.sifra}}" value="{{nastavnik.titula}}" class="input titula" type="text" placeholder="dr.sc.">
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label class="label has-text-weight-medium has-text-centered">Ime i prezime</label>
+              <div class="control">
+                <input value="{{nastavnik.ime}} {{nastavnik.prezime}}" class="input imePrezime" type="text" placeholder="Ivo Ivić">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <button class="button is-info" (click)="dodajNastavnika()">Dodaj nastavnika</button>
+      </div>
+      <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Visoko učilište</label>
+        <div class="control">
+          <div class="select is-fullwidth">
+            <select id="visokoUcilisteSelect" (change)="dohvatiStudije()">
+              <option value="" hidden>Molimo odaberite...</option>
+              <option *ngFor="let visokoUciliste of visokaUcilista"
+                      [value]="visokoUciliste.sifra"
+                      [selected]="visokoUciliste.sifra === kolegij.visokoUciliste.sifra">{{visokoUciliste.opis}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Studij</label>
+        <div class="control">
+          <div class="select is-fullwidth">
+            <select id="studijSelect" #studijSif>
+              <option value="" hidden>Molimo odaberite...</option>
+              <option *ngFor="let studij of studiji" [value]="studij.sifra"
+                      [selected]="studij.sifra === kolegij.studij.sifra">{{studij.opis}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="field is-grouped mt-5">
+        <div class="control">
+          <button class="button is-info"
+                  (click)="spremiKolegij(naziv.value,ects.value,semestar.value,isvuSif.value,obavezan.value,studijSif.value,informacije.value, true)">
+            Dodaj
+          </button>
+        </div>
+        <div class="control">
+          <button class="button is-danger" (click)="modalEditOtvoren = !modalEditOtvoren">Odustani</button>
         </div>
       </div>
     </section>

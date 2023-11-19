@@ -44,8 +44,8 @@ export class PregledKolegijaService {
       .pipe(catchError(this.handleError));
   }
 
-  azurirajKolegij(kolegij: KolegijZahtjev, sifra: string): Observable<KorisnikZahtjev[]> {
-    return this.http.put<KorisnikZahtjev[]>(`${this.azurirajKolegijUrl}/${sifra}`, kolegij, this.httpOptions)
+  azurirajKolegij(kolegij: KolegijZahtjev, sifra: string): Observable<KorisnikZahtjev> {
+    return this.http.put<KorisnikZahtjev>(`${this.azurirajKolegijUrl}/${sifra}`, kolegij, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 

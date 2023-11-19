@@ -190,7 +190,7 @@ export class PregledKolegijaComponent {
     for (let i = 0; i < nastavniciImePrezimeArr.length; i++) {
       let imePrezimeArr = nastavniciImePrezimeArr[i].value.split(' ');
       let nastavnik: Nastavnik = {
-        sifra: '',
+        sifra: isAzuriranje ? nastavniciTituleArr[i].id : '',
         ime: imePrezimeArr[0],
         prezime: imePrezimeArr[1],
         titula: nastavniciTituleArr[i].value,
@@ -201,7 +201,7 @@ export class PregledKolegijaComponent {
     }
 
     let kolegijInfo: KolegijInfo = {
-      sifra: '',
+      sifra: isAzuriranje ? this.kolegij.kolegijInfo.sifra : '',
       informacije: informacije,
       kolegij: this.sifraOpis
     }
