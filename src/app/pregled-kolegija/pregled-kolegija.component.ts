@@ -61,4 +61,19 @@ export class PregledKolegijaComponent {
         console.log(error);
       });
   }
+
+  pretrazi(): void {
+    let inputPolje = document.getElementById('pretraga') as HTMLInputElement;
+    let str = inputPolje.value;
+
+    this.kolegijiPrikaz = this.kolegiji;
+
+    this.kolegijiPrikaz = this.kolegiji.filter(kolegij =>
+      kolegij.naziv.toLowerCase().includes(str.toLowerCase()) ||
+      kolegij.semestar.toString().toLowerCase().includes(str.toLowerCase()) ||
+      kolegij.ects.toString().toLowerCase().includes(str.toLowerCase()) ||
+      kolegij.visokoUciliste.opis.toLowerCase().includes(str.toLowerCase()) ||
+      kolegij.studij.opis.toLowerCase().includes(str.toLowerCase())
+    );
+  }
 }
