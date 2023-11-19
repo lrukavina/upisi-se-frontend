@@ -3,6 +3,7 @@ import {Nastavnik} from "./nastavnik";
 import {SifraOpis} from "./sifraOpis";
 
 export interface KolegijPregled {
+  sifra: string,
   naziv: string,
   ects: number,
   semestar: number,

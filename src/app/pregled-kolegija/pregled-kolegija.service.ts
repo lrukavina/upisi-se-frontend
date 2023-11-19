@@ -10,7 +10,10 @@ import {KorisnikZahtjev} from "../common/korisnikZahtjev";
 })
 export class PregledKolegijaService {
   private dohvatiKolegijeUrl = 'http://localhost:8080/api/kolegij/dohvati/sve';
+  private dohvatiKolegijUrl = 'http://localhost:8080/api/kolegij/dohvati';
   private spremiKolegijUrl = 'http://localhost:8080/api/kolegij/spremi';
+  private azurirajKolegijUrl = 'http://localhost:8080/api/kolegij/azuriraj';
+  private izbrisiKolegijUrl = 'http://localhost:8080/api/kolegij/izbrisi';
 
   constructor(private http: HttpClient) {
   }
@@ -31,14 +34,23 @@ export class PregledKolegijaService {
       .pipe(catchError(this.handleError));
   }
 
+  dohvatiKolegij(sifra: string): Observable<KolegijPregled> {
+    return this.http.get<KolegijPregled>(`${this.dohvatiKolegijUrl}/${sifra}`, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
   spremiKolegij(kolegij: KolegijZahtjev): Observable<KolegijZahtjev[]> {
     return this.http.post<KolegijZahtjev[]>(`${this.spremiKolegijUrl}`, kolegij, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
-  azurirajKolegij(student: KorisnikZahtjev, korisnickoIme: string): Observable<KorisnikZahtjev[]> {
-    return this.http.put<KorisnikZahtjev[]>(`${this.spremiKolegijUrl}/${korisnickoIme}`, student, this.httpOptions)
+  azurirajKolegij(kolegij: KolegijZahtjev, sifra: string): Observable<KorisnikZahtjev[]> {
+    return this.http.put<KorisnikZahtjev[]>(`${this.azurirajKolegijUrl}/${sifra}`, kolegij, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
+  izbrisiKolegij(sifra: string): Observable<any> {
+    return this.http.delete<any>(`${this.izbrisiKolegijUrl}/${sifra}`, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
 }

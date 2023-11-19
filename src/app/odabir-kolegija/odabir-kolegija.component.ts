@@ -56,6 +56,7 @@ export class OdabirKolegijaComponent {
   nastavnici: Nastavnik[] = [];
 
   kolegijPregled: KolegijPregled = {
+    sifra: '',
     naziv: '',
     ects: 0,
     semestar: 0,

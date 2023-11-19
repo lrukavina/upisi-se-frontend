@@ -42,10 +42,10 @@
           <td>{{kolegij.visokoUciliste.opis}}</td>
           <td>{{kolegij.studij.opis}}</td>
           <td>
-            <button class="button is-warning">Uredi</button>
+            <button class="button is-warning" (click)="dohvatiKolegij(kolegij.sifra)">Uredi</button>
           </td>
           <td>
-            <button class="button is-danger">Izbriši</button>
+            <button class="button is-danger" (click)="dohvatiKolegij(kolegij.sifra); modalBrisanjeOtvoren = !modalBrisanjeOtvoren;">Izbriši</button>
           </td>
         </tr>
         </tbody>
@@ -176,5 +176,32 @@
         </div>
       </div>
     </section>
+  </div>
+</div>
+
+<div *ngIf="modalBrisanjeOtvoren" class="modal is-active">
+  <div class="modal-background" (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Potvrdite brisanje kolegija</p>
+      <button class="delete" aria-label="close" (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren"></button>
+    </header>
+    <section class="modal-card-body">
+      <h1><b>Jeste li sigurni da želite izbrisati kolegij?</b></h1>
+      <hr>
+      <div class="has-text-centered">
+        <p><b>Naziv:</b></p>
+        <p>{{kolegij.naziv}}</p>
+        <p class="mt-5"><b>Visoko učilište:</b></p>
+        <p>{{kolegij.visokoUciliste.opis}}</p>
+        <p class="mt-5"><b>Studij:</b></p>
+        <p>{{kolegij.studij.opis}}</p>
+      </div>
+      <hr>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-danger" (click)="izbrisiKolegij()">Izbriši</button>
+      <button class="button" (click)="modalBrisanjeOtvoren = !modalBrisanjeOtvoren">Odustani</button>
+    </footer>
   </div>
 </div>

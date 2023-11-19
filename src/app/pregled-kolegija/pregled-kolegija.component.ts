@@ -38,6 +38,7 @@ export class PregledKolegijaComponent {
   studiji: SifraOpis[] = [];
 
   kolegij: KolegijPregled = {
+    sifra: '',
     naziv: '',
     ects: 0,
     semestar: 0,
@@ -63,6 +64,16 @@ export class PregledKolegijaComponent {
         this.kolegiji = kolegiji;
         this.kolegijiPrikaz = kolegiji;
         console.log(kolegiji);
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  dohvatiKolegij(sifra: string): void {
+    this.pregledKolegijaService.dohvatiKolegij(sifra)
+      .subscribe(kolegij => {
+        this.kolegij = kolegij;
+        console.log(kolegij);
       }, error => {
         console.log(error);
       });
@@ -216,11 +227,20 @@ export class PregledKolegijaComponent {
         });
     }
 
-    /* this.pregledStudenataService.azurirajStudenta(student, this.student.korisnickoIme)
-       .subscribe(student => {
-         window.location.reload();
-       }, error => {
-         console.log(error);
-       });*/
+    this.pregledKolegijaService.azurirajKolegij(kolegij, this.kolegij.sifra)
+      .subscribe(kolegij => {
+        window.location.reload();
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  izbrisiKolegij(): void {
+    this.pregledKolegijaService.izbrisiKolegij(this.kolegij.sifra)
+      .subscribe(kolegij => {
+        window.location.reload();
+      }, error => {
+        console.log(error);
+      });
   }
 }
