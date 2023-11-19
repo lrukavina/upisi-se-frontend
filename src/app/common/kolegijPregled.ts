@@ -9,6 +9,7 @@ export interface KolegijPregled {
   isvuSifra: string,
   obavezan: boolean,
   studij: SifraOpis,
+  visokoUciliste: SifraOpis,
   kolegijInfo: KolegijInfo,
   nastavnici: Nastavnik[]
 }

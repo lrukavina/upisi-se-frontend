@@ -34,129 +34,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>NOSQL i napredna big data analitika</td>
-          <td>3</td>
-          <td>6</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>Specijalistički izvanredni studij informatike (RS)</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Alati i postupci umjetne inteligencije</td>
-          <td>3</td>
-          <td>6</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>Specijalistički izvanredni studij informatike (RS)</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Reinžinjering poslovnih procesa</td>
-          <td>3</td>
-          <td>6</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>Specijalistički izvanredni studij informatike (RS)</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Projektiranje inovacija</td>
-          <td>3</td>
-          <td>6</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>Specijalistički izvanredni studij informatike (RS)</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Napredne tehnike projektiranja web servisa</td>
-          <td>3</td>
-          <td>6</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>Specijalistički izvanredni studij informatike (RS)</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Razvoj mobilnih aplikacija</td>
-          <td>3</td>
-          <td>6</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>Specijalistički izvanredni studij informatike (RS)</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Modeliranje i administracija baza podataka</td>
-          <td>3</td>
-          <td>6</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>Specijalistički izvanredni studij informatike (RS)</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Digitalna ekonomija</td>
-          <td>1</td>
-          <td>5</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>Specijalistički izvanredni studij informatike (RS)</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Diskretna matematika</td>
-          <td>2</td>
-          <td>6</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>Specijalistički izvanredni studij informatike (RS)</td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Metodologija stručnog i istraživačkog rada</td>
-          <td>4</td>
-          <td>6</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>Specijalistički izvanredni studij informatike (RS)</td>
+        <tr *ngFor="let kolegij of kolegijiPrikaz">
+          <td>{{kolegij.naziv}}</td>
+          <td>{{kolegij.semestar}}</td>
+          <td>{{kolegij.ects}}</td>
+          <td>{{kolegij.visokoUciliste.opis}}</td>
+          <td>{{kolegij.studij.opis}}</td>
           <td>
             <button class="button is-warning">Uredi</button>
           </td>
@@ -168,19 +51,6 @@
       </table>
     </div>
     <hr>
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-      <a class="pagination-previous">Prethodna stranica</a>
-      <a class="pagination-next">Sljedeća stranica</a>
-      <ul class="pagination-list">
-        <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
-        <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
-        <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
-      </ul>
-    </nav>
   </div>
 </div>
 

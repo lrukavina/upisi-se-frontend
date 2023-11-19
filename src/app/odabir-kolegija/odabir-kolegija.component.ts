@@ -62,6 +62,7 @@ export class OdabirKolegijaComponent {
     isvuSifra: '',
     obavezan: true,
     studij: this.sifraOpis,
+    visokoUciliste: this.sifraOpis,
     kolegijInfo: this.kolegijInfo,
     nastavnici: this.nastavnici
   }
