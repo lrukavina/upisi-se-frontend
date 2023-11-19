@@ -10,7 +10,8 @@
     </div>
     <div class="field mt-6 has-text-centered">
       <div class="control">
-        <input id="pretraga"  class="input has-text-centered" style="width: 60%" type="text" placeholder="Pretraga kolegija" (keydown)="pretrazi()">
+        <input id="pretraga" class="input has-text-centered" style="width: 60%" type="text"
+               placeholder="Pretraga kolegija" (keydown)="pretrazi()">
       </div>
     </div>
     <div style="margin-bottom: 10vh">
@@ -65,7 +66,7 @@
       <div class="field">
         <label class="label has-text-weight-medium has-text-centered">Naziv kolegija</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Matematika I">
+          <input class="input" type="text" placeholder="Matematika I" #naziv>
         </div>
       </div>
       <div class="columns">
@@ -73,7 +74,7 @@
           <div class="field">
             <label class="label has-text-weight-medium has-text-centered">Semestar</label>
             <div class="control">
-              <input class="input" type="text" placeholder="1">
+              <input class="input" type="text" placeholder="1" #semestar>
             </div>
           </div>
         </div>
@@ -81,40 +82,94 @@
           <div class="field">
             <label class="label has-text-weight-medium has-text-centered">ECTS bodovi</label>
             <div class="control">
-              <input class="input" type="text" placeholder="6">
+              <input class="input" type="text" placeholder="6" #ects>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">ISVU šifra</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="229516" #isvuSif>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label has-text-weight-medium has-text-centered">Obavezan</label>
+            <div class="control">
+              <div class="select is-fullwidth">
+                <select #obavezan>
+                  <option value="" hidden>Molimo Odaberite..</option>
+                  <option value="true">DA</option>
+                  <option value="">NE</option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div class="field">
+        <label class="label has-text-weight-medium has-text-centered">Informacije</label>
+        <div class="control">
+          <textarea class="textarea" placeholder="Informacije o kolegiju" #informacije></textarea>
+        </div>
+      </div>
+      <label class="label has-text-weight-medium has-text-centered">Nastavnici</label>
+      <div class="field" id="nastavnici">
+        <div class="columns">
+          <div class="column">
+            <div class="field">
+              <label class="label has-text-weight-medium has-text-centered">Titula</label>
+              <div class="control">
+                <input class="input titula" type="text" placeholder="dr.sc.">
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label class="label has-text-weight-medium has-text-centered">Ime i prezime</label>
+              <div class="control">
+                <input class="input imePrezime" type="text" placeholder="Ivo Ivić">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <button class="button is-info" (click)="dodajNastavnika()">Dodaj nastavnika</button>
+      </div>
+      <div class="field">
         <label class="label has-text-weight-medium has-text-centered">Visoko učilište</label>
         <div class="control">
           <div class="select is-fullwidth">
-            <select>
-              <option>Tehničko veleučilište u Zagrebu</option>
-              <option>Fakultet strojarstva i brodogradnje</option>
-              <option>Ekonomski fakultet u Zagrebu</option>
-              <option>Veleučilište Velika gorica</option>
-              <option>Veterinarski fakultet u Zagrebu</option>
-              <option>Fakultet elektrotehnike i računarstva</option>
+            <select id="visokoUcilisteSelect" (change)="dohvatiStudije()">
+              <option value="" hidden>Molimo odaberite...</option>
+              <option *ngFor="let visokoUciliste of visokaUcilista"
+                      [value]="visokoUciliste.sifra">{{visokoUciliste.opis}}</option>
             </select>
           </div>
         </div>
       </div>
       <div class="field">
-        <label class="label has-text-weight-medium has-text-centered">Studij i smjer</label>
+        <label class="label has-text-weight-medium has-text-centered">Studij</label>
         <div class="control">
           <div class="select is-fullwidth">
-            <select>
-              <option>Specijalistički izvanredni studij informatike (RS) - Programsko inženjerstvo računarskih i ugradbenih sustava</option>
-              <option>Specijalistički izvanredni studij digitalne ekonomije (RS) - Digitalna ekonomija i dizajn</option>
+            <select id="studijSelect" disabled #studijSif>
+              <option value="" hidden>Molimo odaberite...</option>
+              <option *ngFor="let studij of studiji" [value]="studij.sifra">{{studij.opis}}</option>
             </select>
           </div>
         </div>
       </div>
       <div class="field is-grouped mt-5">
         <div class="control">
-          <button class="button is-info">Dodaj</button>
+          <button class="button is-info"
+                  (click)="spremiKolegij(naziv.value,ects.value,semestar.value,isvuSif.value,obavezan.value,studijSif.value,informacije.value, false)">
+            Dodaj
+          </button>
         </div>
         <div class="control">
           <button class="button is-danger">Odustani</button>
