@@ -1,16 +1,16 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, throwError} from "rxjs";
+import {KolegijIzbornik} from "../common/kolegijIzbornik";
+import {UpisZahtjev} from "../common/upisZahtjev";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PregledUpisnihPrijavaService {
-  private dohvatiUpiseUrl = 'http://localhost:8080/api/upis/dohvati/sve';
-  private dohvatiUpisUrl = 'http://localhost:8080/api/kolegij/dohvati';
-  private spremiUpisUrl = 'http://localhost:8080/api/kolegij/spremi';
-  private azurirajUpisUrl = 'http://localhost:8080/api/kolegij/azuriraj';
-  private izbrisiUpisUrl = 'http://localhost:8080/api/kolegij/izbrisi';
+  private dohvatiKolegijeIzbornikUrl = 'http://localhost:8080/api/kolegij/dohvati/izbornik/studij';
+  private spremiUpisnuPrijavuUrl = 'http://localhost:8080/api/upis/spremi';
+
 
   constructor(private http: HttpClient) {
   }
@@ -25,4 +25,15 @@ export class PregledUpisnihPrijavaService {
   handleError(error: HttpErrorResponse) {
     return throwError(error.error || 'Server error');
   }
+
+  dohvatiKolegijeZaStudij(sifra: string): Observable<KolegijIzbornik> {
+    return this.http.get<KolegijIzbornik>(`${this.dohvatiKolegijeIzbornikUrl}/${sifra}`, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  spremiUpisnuPrijavu(upisnaPrijava: UpisZahtjev): Observable<UpisZahtjev> {
+    return this.http.post<UpisZahtjev>(`${this.spremiUpisnuPrijavuUrl}`, upisnaPrijava, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
 }
