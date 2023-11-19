@@ -42,6 +42,8 @@ export class OdabirKolegijaComponent {
     maxBrojEctsa: 0,
     datumVrijemeOd: '',
     datumVrijemeDo: '',
+    datumOd: '',
+    datumDo: '',
     status: '',
     obavezniKolegiji: this.kolegiji,
     izborniKolegiji: this.kolegiji
@@ -81,7 +83,7 @@ export class OdabirKolegijaComponent {
 
 
   dohvatiAktivneUpise(): void {
-    this.pregledUpisaService.dohvatiUpise()
+    this.pregledUpisaService.dohvatiUpiseZaKorisnika()
       .subscribe(upis => {
         if (upis != null) {
           this.upis = upis;

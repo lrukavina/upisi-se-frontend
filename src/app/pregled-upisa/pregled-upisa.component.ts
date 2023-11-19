@@ -39,6 +39,8 @@ export class PregledUpisaComponent implements OnInit {
     maxBrojEctsa: 0,
     datumVrijemeOd: '',
     datumVrijemeDo: '',
+    datumOd: '',
+    datumDo: '',
     status: '',
     obavezniKolegiji: this.kolegiji,
     izborniKolegiji: this.kolegiji
@@ -60,7 +62,7 @@ export class PregledUpisaComponent implements OnInit {
 
 
   dohvatiAktivneUpise(): void {
-    this.pregledUpisaService.dohvatiUpise()
+    this.pregledUpisaService.dohvatiUpiseZaKorisnika()
       .subscribe(upis => {
         if (upis != null) {
           this.upis = upis;

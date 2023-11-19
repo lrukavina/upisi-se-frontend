@@ -10,6 +10,8 @@ export interface Upis {
   maxBrojEctsa: number,
   datumVrijemeOd: string,
   datumVrijemeDo: string,
+  datumOd: string,
+  datumDo: string,
   status: string,
   obavezniKolegiji: Kolegij[],
   izborniKolegiji: Kolegij[]
