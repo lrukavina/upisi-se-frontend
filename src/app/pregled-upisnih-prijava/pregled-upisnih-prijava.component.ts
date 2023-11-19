@@ -4,6 +4,8 @@ import {PregledKolegijaService} from "../pregled-kolegija/pregled-kolegija.servi
 import {PregledUpisaService} from "../pregled-upisa/pregled-upisa.service";
 import {Upis} from "../pregled-upisa/upis";
 import {Kolegij} from "../common/kolegij";
+import {PregledStudenataService} from "../pregled-studenata/pregled-studenata.service";
+import {VisokoUciliste} from "../common/visokoUciliste";
 
 @Component({
   selector: 'app-pregled-upisnih-prijava',
@@ -27,6 +29,9 @@ export class PregledUpisnihPrijavaComponent {
 
   kolegiji: Kolegij[] = [];
 
+  visokaUcilista: SifraOpis[] = [];
+  studiji: SifraOpis[] = [];
+
   upis: Upis = {
     sifra: '',
     visokoUciliste: this.sifraOpis,
@@ -41,7 +46,7 @@ export class PregledUpisnihPrijavaComponent {
     izborniKolegiji: this.kolegiji
   }
 
-  constructor(private pregledKolegijaService: PregledKolegijaService, private pregledUpisaService: PregledUpisaService) {
+  constructor(private pregledStudenataService: PregledStudenataService, private pregledKolegijaService: PregledKolegijaService, private pregledUpisaService: PregledUpisaService) {
   }
 
   ngOnInit(): void {
@@ -64,6 +69,54 @@ export class PregledUpisnihPrijavaComponent {
       .subscribe(upis => {
         this.upis = upis;
         console.log(upis);
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  pretrazi(): void {
+    let inputPolje = document.getElementById('pretraga') as HTMLInputElement;
+    let str = inputPolje.value;
+
+    this.upisiPrikaz = this.upisi;
+
+    this.upisiPrikaz = this.upisi.filter(upis =>
+      upis.studij.opis.toLowerCase().includes(str.toLowerCase()) ||
+      upis.semestar.toString().toLowerCase().includes(str.toLowerCase()) ||
+      upis.visokoUciliste.opis.toLowerCase().includes(str.toLowerCase()) ||
+      upis.studij.opis.toLowerCase().includes(str.toLowerCase()) ||
+      upis.status.toLowerCase().includes(str.toLowerCase())
+    );
+  }
+
+  dohvatiVisokaUcilista(): void {
+    this.pregledStudenataService.dohvatiVisokaUcilista()
+      .subscribe(visokaUcilista => {
+        this.visokaUcilista = visokaUcilista;
+        this.visokaUcilista = visokaUcilista;
+        console.log(visokaUcilista);
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  dohvatiStudije(): void {
+    let visokoUcilisteSelect = document.getElementById('visokoUcilisteSelect') as HTMLInputElement;
+    let studijSelect = document.getElementById('studijSelect') as HTMLInputElement;
+
+    let visokoUcilisteSifra = visokoUcilisteSelect.value;
+
+    if (visokoUcilisteSifra === '') {
+      studijSelect.disabled = true;
+      return;
+    }
+
+    studijSelect.disabled = false;
+    this.pregledStudenataService.dohvatiStudije(visokoUcilisteSifra)
+      .subscribe(studiji => {
+        this.studiji = studiji;
+        this.studiji = studiji;
+        console.log(studiji);
       }, error => {
         console.log(error);
       });

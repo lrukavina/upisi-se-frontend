@@ -10,7 +10,8 @@
     </div>
     <div class="field mt-6 has-text-centered">
       <div class="control">
-        <input class="input has-text-centered" style="width: 60%" type="email" placeholder="Pretraga upisnih prijava">
+        <input id="pretraga" class="input has-text-centered" style="width: 60%" type="text"
+               placeholder="Pretraga upisnih prijava" (keydown)="pretrazi()">
       </div>
     </div>
     <div style="margin-bottom: 10vh">
@@ -42,7 +43,7 @@
           <td class="has-text-warning-dark" *ngIf="upis.status === 'U_TIJEKU'"><b>U tijeku</b></td>
           <td class="has-text-danger-dark" *ngIf="upis.status === 'NIJE_ZAPOCET'"><b>Nije započet</b></td>
           <td>
-            <button class="button is-info"  (click)="modalPregledOtvoren = !modalPregledOtvoren">Pregled</button>
+            <button class="button is-info" (click)="modalPregledOtvoren = !modalPregledOtvoren">Pregled</button>
           </td>
           <td>
             <button class="button is-warning">Uredi</button>
@@ -72,7 +73,8 @@
         <p><b>Visoko učilište:</b></p>
         <p class="mb-4">Tehničko veleučilište u Zagrebu</p>
         <p><b>Studij i smjer:</b></p>
-        <p class="mb-4">Specijalistički izvanredni studij informatike (RS) - Programsko inženjerstvo računarskih i ugradbenih sustava</p>
+        <p class="mb-4">Specijalistički izvanredni studij informatike (RS) - Programsko inženjerstvo računarskih i
+          ugradbenih sustava</p>
         <p><b>Semestar:</b></p>
         <p>3</p>
       </div>
@@ -184,21 +186,6 @@
               <option>Stručni prijediplomski studij Mehatronika</option>
               <option>Stručni prijediplomski studij Strojarstvo</option>
               <option>Stručni prijediplomski studij Informatika</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="field">
-        <label class="label has-text-weight-medium has-text-centered">Smjer</label>
-        <div class="control">
-          <div class="select is-fullwidth">
-            <select>
-              <option>Odaberite</option>
-              <option>Programsko inženjerstvo</option>
-              <option>Inženjerstvo računalnih sustava i mreža</option>
-              <option>Građevinsko poduzetništvo</option>
-              <option>Niskogradnja</option>
-              <option>Mehatronika</option>
             </select>
           </div>
         </div>
