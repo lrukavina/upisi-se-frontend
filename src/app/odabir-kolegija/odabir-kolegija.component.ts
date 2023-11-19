@@ -81,7 +81,7 @@ export class OdabirKolegijaComponent {
 
 
   dohvatiAktivneUpise(): void {
-    this.pregledUpisaService.dohvatiUpise()
+    this.pregledUpisaService.dohvatiUpiseZaKorisnika()
       .subscribe(upis => {
         if (upis != null) {
           this.upis = upis;

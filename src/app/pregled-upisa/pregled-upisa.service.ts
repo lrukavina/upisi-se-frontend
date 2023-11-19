@@ -8,7 +8,10 @@ import {Upis} from "./upis";
 })
 export class PregledUpisaService {
 
-  private pregledUpisaUrl = 'http://localhost:8080/api/upis/dohvati/aktivne/korisnik';
+  private pregledUpisaPoKorisnikuUrl = 'http://localhost:8080/api/upis/dohvati/aktivne/korisnik';
+  private pregledUpisaUrl = 'http://localhost:8080/api/upis/dohvati/sve';
+  private pregledUpisaPoSifriUrl = 'http://localhost:8080/api/upis/dohvati'
+
   private potvrdiUpisniListUrl = 'http://localhost:8080/api/upisni-list/potvrdi/korisnik'
   private izbrisiUpisniListUrl = 'http://localhost:8080/api/upisni-list/izbrisi/korisnik'
 
@@ -26,8 +29,19 @@ export class PregledUpisaService {
   constructor(private http: HttpClient) {
   }
 
-  dohvatiUpise(): Observable<Upis> {
-    return this.http.get<Upis>(`${this.pregledUpisaUrl}/${sessionStorage.getItem('korisnickoIme')}`, this.httpOptions)
+  dohvatiSveUpise(): Observable<Upis[]> {
+    return this.http.get<Upis[]>(`${this.pregledUpisaUrl}`, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+
+  dohvatiUpiseZaKorisnika(): Observable<Upis> {
+    return this.http.get<Upis>(`${this.pregledUpisaPoKorisnikuUrl}/${sessionStorage.getItem('korisnickoIme')}`, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  dohvatiUpisPoSifri(sifra: string): Observable<Upis> {
+    return this.http.get<Upis>(`${this.pregledUpisaPoSifriUrl}/${sifra}`, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 

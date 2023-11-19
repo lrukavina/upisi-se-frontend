@@ -60,7 +60,7 @@ export class PregledUpisaComponent implements OnInit {
 
 
   dohvatiAktivneUpise(): void {
-    this.pregledUpisaService.dohvatiUpise()
+    this.pregledUpisaService.dohvatiUpiseZaKorisnika()
       .subscribe(upis => {
         if (upis != null) {
           this.upis = upis;

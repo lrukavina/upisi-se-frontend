@@ -24,158 +24,25 @@
       <table class="table has-text-centered is-fullwidth">
         <thead>
         <tr>
-          <th class="has-text-centered">Naziv studija</th>
-          <th class="has-text-centered">Naziv smjera</th>
+          <th class="has-text-centered">Naziv studija (naziv smjera)</th>
           <th class="has-text-centered">Semestar</th>
           <th class="has-text-centered">Visoko učilište</th>
+          <th class="has-text-centered">Status</th>
           <th class="has-text-centered"></th>
           <th class="has-text-centered"></th>
           <th class="has-text-centered"></th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>Stručni prijediplomski studij Računarstvo</td>
-          <td>Programsko inženjerstvo</td>
-          <td>3</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
+        <tr *ngFor="let upis of upisiPrikaz">
+          <td>{{upis.studij.opis}}</td>
+          <td>{{upis.semestar}}</td>
+          <td>{{upis.visokoUciliste.opis}}</td>
+          <td class="has-text-success-dark" *ngIf="upis.status === 'ZAVRSEN'"><b>Završen</b></td>
+          <td class="has-text-warning-dark" *ngIf="upis.status === 'U_TIJEKU'"><b>U tijeku</b></td>
+          <td class="has-text-danger-dark" *ngIf="upis.status === 'NIJE_ZAPOCET'"><b>Nije započet</b></td>
           <td>
             <button class="button is-info"  (click)="modalPregledOtvoren = !modalPregledOtvoren">Pregled</button>
-          </td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Stručni prijediplomski studij Računarstvo</td>
-          <td>Inženjerstvo računalnih sustava i mreža</td>
-          <td>3</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-info"  (click)="modalPregledOtvoren = !modalPregledOtvoren">Pregled</button>
-          </td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Stručni prijediplomski studij Računarstvo</td>
-          <td>Inženjerstvo računalnih sustava i mreža</td>
-          <td>3</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-info"  (click)="modalPregledOtvoren = !modalPregledOtvoren">Pregled</button>
-          </td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Stručni prijediplomski studij Graditeljstvo</td>
-          <td>Građevinsko poduzetništvo</td>
-          <td>3</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-info"  (click)="modalPregledOtvoren = !modalPregledOtvoren">Pregled</button>
-          </td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Stručni prijediplomski studij Graditeljstvo</td>
-          <td>Niskogradnja</td>
-          <td>3</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-info"  (click)="modalPregledOtvoren = !modalPregledOtvoren">Pregled</button>
-          </td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Stručni prijediplomski studij Mehatronika</td>
-          <td>Mehatronika</td>
-          <td>3</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-info"  (click)="modalPregledOtvoren = !modalPregledOtvoren">Pregled</button>
-          </td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Stručni prijediplomski studij Strojarstvo</td>
-          <td>Strojarstvo</td>
-          <td>3</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-info"  (click)="modalPregledOtvoren = !modalPregledOtvoren">Pregled</button>
-          </td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Stručni prijediplomski studij Informatika</td>
-          <td>Organizacija i informatizacija ureda</td>
-          <td>3</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-info"  (click)="modalPregledOtvoren = !modalPregledOtvoren">Pregled</button>
-          </td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Stručni prijediplomski studij Informatika</td>
-          <td>Elektroničko poslovanje</td>
-          <td>3</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-info"  (click)="modalPregledOtvoren = !modalPregledOtvoren">Pregled</button>
-          </td>
-          <td>
-            <button class="button is-warning">Uredi</button>
-          </td>
-          <td>
-            <button class="button is-danger">Izbriši</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Stručni prijediplomski studij Informatika</td>
-          <td>Informatički dizajn</td>
-          <td>3</td>
-          <td>Tehničko veleučilište u Zagrebu</td>
-          <td>
-            <button class="button is-info" (click)="modalPregledOtvoren = !modalPregledOtvoren">Pregled</button>
           </td>
           <td>
             <button class="button is-warning">Uredi</button>
@@ -188,19 +55,6 @@
       </table>
     </div>
     <hr>
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-      <a class="pagination-previous">Prethodna stranica</a>
-      <a class="pagination-next">Sljedeća stranica</a>
-      <ul class="pagination-list">
-        <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
-        <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
-        <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
-      </ul>
-    </nav>
   </div>
 </div>
 
