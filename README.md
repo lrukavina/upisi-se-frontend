@@ -1,27 +1,35 @@
-# Frontend
+# UpišiSe Frontend
+* NTPWS projekt
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.6.
+### Izgled Aplikacije
+###
+###
+![1](https://github.com/lrukavina/upisi-se-frontend/assets/77284546/6553b4c2-e383-49b6-90f1-630bf4d81ab4)
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+![2](https://github.com/lrukavina/upisi-se-frontend/assets/77284546/b251a0ea-4851-49d6-8f81-41452d4ce22a)
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+![3](https://github.com/lrukavina/upisi-se-frontend/assets/77284546/160657f0-98af-4b5b-aa09-0d4a02880fdf)
 
-## Build
+![4](https://github.com/lrukavina/upisi-se-frontend/assets/77284546/e3cdf652-19b3-4a0a-b0e5-4f2ba32f0948)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+![5](https://github.com/lrukavina/upisi-se-frontend/assets/77284546/1dadb063-44c5-42fc-be54-c867b87e181e)
 
-## Running unit tests
+![6](https://github.com/lrukavina/upisi-se-frontend/assets/77284546/80b37cb9-b21f-48c4-9343-203afd227c07)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+![7](https://github.com/lrukavina/upisi-se-frontend/assets/77284546/258c0f03-303b-45c3-b452-25f26f21fafe)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+![8](https://github.com/lrukavina/upisi-se-frontend/assets/77284546/2215557b-3ab4-4943-8345-d5d1ff07a99f)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+![9](https://github.com/lrukavina/upisi-se-frontend/assets/77284546/33c3989a-814f-423d-8ea1-28c9da0b227c)
+
+![10](https://github.com/lrukavina/upisi-se-frontend/assets/77284546/176a88ab-7c71-4573-a6a1-de0648e025ac)
+
+
+![11](https://github.com/lrukavina/upisi-se-frontend/assets/77284546/ccb8ff14-bd01-4475-8369-acd03dd31f8b)
+
+
+
